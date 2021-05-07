@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+
+<div class="container medd-header" style="background-color:#f1f2f3;" >
+
+<div style="background-color: #f1f2f3;height: 100%; "class="card " >
+<h2 class="text-center " style="color: rgb(131, 179, 241); margin:20px; font-family: 'Times New Roman', Times, serif;">Liste Des Pharmaciens</h2>
+<p-table [value]="pharmaciens" [scrollable]="true" scrollHeight="500px" >
+  <ng-template pTemplate="header" >
+    <tr>
+      <th >Nom</th>
+      <th>Prenom</th>
+      <th>Email</th>
+     <th>Status</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-pharmacien >
+    <tr>
+      <td>{{pharmacien.nom_phar}}</td>
+      <td>{{pharmacien.prenom_phar}}</td>
+      <td>{{pharmacien.email}}</td>
+      <td><span class="badge text-white" [ngClass]="{' bg-danger  mr-1' : pharmacien.status.trim() == 'inactif' ,  ' bg-warning ': pharmacien.status.trim() == 'pending', 
+        'bg-success ': pharmacien.status.trim() == 'actif'}">{{pharmacien.status}}</span></td>
+  
+     
+    </tr>
+  </ng-template>
+</p-table>
+</div>
+</div>
+

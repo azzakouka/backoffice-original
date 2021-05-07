@@ -1,8 +1,45 @@
-<div style="background: -webkit-linear-gradient(left, #25c481, #25b7c4);
-background: linear-gradient(to right, #25c481, #25b7c4);
-font-family: 'Roboto', sans-serif; height: 657px;" >
-<div class="container card-header" >
+<app-navbar></app-navbar>
+<div style="background-color: #f1f2f3;height: 500px; "class="card " >
+  <h2 class="text-center " style="color: rgb(131, 179, 241);  font-family: 'Times New Roman', Times, serif;">Liste Des Médecins</h2>
+  <p-table [value]="medecins" [scrollable]="true" scrollHeight="500px">
+    <ng-template pTemplate="header" >
+      <tr>
+    <th>Nom</th>
+    <th>Prenom</th>
+    <th>Service</th>
+    <th>Specialité</th>
+    <th>status</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-medecin>
+      <tr>
+        <td>{{medecin.nom_med}}</td>
+        <td>{{medecin.prenom_med}}</td>
+        <td>{{medecin.service}}</td>
+        <td>{{medecin.specialite}}</td>
+        <td><span class="badge text-white" [ngClass]="{' bg-danger  mr-1' : medecin.status.trim() == 'inactif' ,  ' bg-warning ': medecin.status.trim() == 'pending', 
+          'bg-success ': medecin.status.trim() == 'actif'}">{{medecin.status}}</span></td>
+     
+      </tr>
+    </ng-template>
+  </p-table>
+  </div>
 
 
-</div>
-</div>
+
+<!--<table>
+  <tr>
+    <th >Nom</th>
+    <th>Prenom</th>
+    <th>Service</th>
+    <th>Specialité</th>
+  
+  </tr>
+  <tr *ngFor="let medecin of medecins">
+    <td>{{medecin.nom_med}}</td>
+    <td>{{medecin.pren_med}}</td>
+    <td>{{medecin.service}}</td>
+    <td>{{medecin.specialite}}</td>
+  </tr>
+
+</table>-->
