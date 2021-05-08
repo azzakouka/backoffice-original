@@ -16,14 +16,16 @@ export class DataService {
   id:any;
 user:any;
   constructor(private http: HttpClient,private router:Router) { }
-
+  getAllHopitals(): Observable<any[]> {
+    return this.http.get<any[]>(environment.api+"rdv");
+}
   getAllMedecins(): Observable<any[]> {
     return this.http.get<any[]>(environment.api+"users/medecins");
   }
   getAllPharmaciens(): Observable<any[]> {
     return this.http.get<any[]>(environment.api+"users/pharmaciens");
   }
-    
+
 
 getCurrentUser(f:any){
   let addedData = JSON.stringify(f.value);
@@ -33,7 +35,7 @@ getCurrentUser(f:any){
           this.id=res.user;
           console.log(this.id);
           this.verify(this.id);
-          
+
          },
            error => {
              //this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
@@ -44,7 +46,7 @@ getCurrentUser(f:any){
         this.http.get(environment.api+"users" +`/${id}`) .subscribe((res)=>{
           this.user=res;
           console.log(this.user);
-        }) 
+        })
        }
 
 
