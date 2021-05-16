@@ -1,4 +1,10 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { io } from 'socket.io-client';
+import { environment } from 'src/environments/environment';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-login',
@@ -6,10 +12,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+   private socket: any;
+  public data: any;
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    })
+  }
+  mail:any="";
+  mdp:any="";
 
-  constructor() { }
+  constructor(private dataService: DataService,private router:Router,private http:HttpClient) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+ 
   }
 
+  Submit(form:any){
+    console.log ("form.value", form.value)
+    this.dataService.getCurrentUser(form);
+   }
 }

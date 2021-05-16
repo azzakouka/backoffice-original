@@ -2,7 +2,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { PrimeNGConfig } from 'primeng/api';
+import { ConfirmationService, MessageService, PrimeNGConfig } from 'primeng/api';
 import {TableModule} from 'primeng/table';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +24,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { GlobalHttpInterceptorService } from './GlobalHttpInterceptorService';
 import { DataService } from './data.service';
 import { LoginComponent } from './login/login.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import { AjoutPersComponent } from './ajout-pers/ajout-pers.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import {DialogModule} from 'primeng/dialog';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { ProfilComponent } from './profil/profil.component';
 
 @NgModule({
   declarations: [
@@ -31,9 +40,18 @@ import { LoginComponent } from './login/login.component';
     ListeMedecinComponent,
     ListepharmacienComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    AjoutPersComponent,
+    DashboardComponent,
+    ProfilComponent
   ],
   imports: [MatTabsModule,
+    MatButtonModule,DialogModule,
+    MatCheckboxModule,ConfirmDialogModule,
+    MatGridListModule,
+    MatInputModule,
+    MatIconModule,
+    BrowserAnimationsModule,
     DropdownModule,MatSelectModule,SidebarModule,
     BrowserModule,ToastModule,
     AppRoutingModule,MatFormFieldModule,
@@ -43,7 +61,7 @@ import { LoginComponent } from './login/login.component';
   ],
 
     exports:[MatTabsModule,MatFormFieldModule,DropdownModule,MatSelectModule,SidebarModule,BrowserAnimationsModule],
-    providers: [ DataService,{ provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }   ],
+    providers: [ConfirmationService, DataService,MessageService,{ provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }   ],
     bootstrap: [AppComponent]
 })
 export class AppModule {  constructor(private primengConfig: PrimeNGConfig) {} }

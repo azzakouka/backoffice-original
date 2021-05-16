@@ -1,8 +1,13 @@
-     <!-- Sidebar -->
-     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" style="float: left;">
+<div class="block lg:inline-block lg:mt-0" style="width: 80%; height: 20%; background-color:#43cebb ;">
+  <button pButton  (click)="verifprofil()" pRipple  style="background-color: #43cebb;float:right;" label="Profil" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
+  <button pButton  (click)="logout()" pRipple style="background-color: #43cebb;" icon="pi pi-user" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
+
+</div>
+<!-- Sidebar -->
+     <ul style="background-color: #43cebb;float: left;width:20%;height: 100%;" class="navbar-nav sidebar sidebar-dark accordion block lg:inline-block lg:mt-0" id="accordionSidebar" >
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" [routerLink]="['../ListeMedecin']">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" [routerLink]="['../dash']">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -14,9 +19,9 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" [routerLink]="['../ListeMedecin']">
+            <a class="nav-link" [routerLink]="['/dash']">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
+                <span>Tableau de bord</span></a>
         </li>
 
         <!-- Divider -->
@@ -24,12 +29,12 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Liste des comptes à approuver
+            Liste des comptes des personnels
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" [routerLink]="['../ListeMedecin']" data-toggle="collapse" data-target="#collapseTwo"
+            <a class="nav-link collapsed" [routerLink]="['../listeMedecin']" data-toggle="collapse" data-target="#collapseTwo"
                 aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Liste des medecins</span>
@@ -61,17 +66,17 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Addons
+            Ajouter un personnel
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+            <a class="nav-link collapsed"  [routerLink]="['../AjoutPers']" data-toggle="collapse" data-target="#collapsePages"
                 aria-expanded="true" aria-controls="collapsePages">
                 <i class="fas fa-fw fa-folder"></i>
-                <span>Pages</span>
+                <span>Ajouter</span>
             </a>
-            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <!--<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Login Screens:</h6>
                     <a class="collapse-item" href="login.html">Login</a>
@@ -82,22 +87,22 @@
                     <a class="collapse-item" href="404.html">404 Page</a>
                     <a class="collapse-item" href="blank.html">Blank Page</a>
                 </div>
-            </div>
+            </div>-->
         </li>
 
-        <!-- Nav Item - Charts -->
+        <!-- Nav Item - Charts 
         <li class="nav-item">
             <a class="nav-link" href="charts.html">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Charts</span></a>
         </li>
 
-        <!-- Nav Item - Tables -->
+        <!-- Nav Item - Tables 
         <li class="nav-item">
             <a class="nav-link" href="tables.html">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Tables</span></a>
-        </li>
+        </li>-->
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">

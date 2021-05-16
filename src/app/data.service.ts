@@ -25,16 +25,19 @@ user:any;
   getAllPharmaciens(): Observable<any[]> {
     return this.http.get<any[]>(environment.api+"users/pharmaciens");
   }
-
+  delete(id:any){
+    return this.http.delete(environment.api+"auth/deleteMed"+`/${id}`);
+   }
 
 getCurrentUser(f:any){
   let addedData = JSON.stringify(f.value);
          console.log ("addedData", addedData);
-    return this.http.post(environment.api+"auth/login", addedData,this.httpOptions).subscribe((res:any) => {
+    return this.http.post(environment.api+"auth/loginUser", addedData,this.httpOptions).subscribe((res:any) => {
           localStorage.setItem("token",res.token)
-          this.id=res.user;
-          console.log(this.id);
-          this.verify(this.id);
+          this.user=res.user;
+          console.log(this.user);
+         // this.verify(this.id);
+          this.router.navigate(['/dash']);
 
          },
            error => {
