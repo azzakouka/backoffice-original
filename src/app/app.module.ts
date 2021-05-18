@@ -33,6 +33,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {DialogModule} from 'primeng/dialog';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { ProfilComponent } from './profil/profil.component';
+import {ChartModule} from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { ProfilComponent } from './profil/profil.component';
   imports: [MatTabsModule,
     MatButtonModule,DialogModule,
     MatCheckboxModule,ConfirmDialogModule,
-    MatGridListModule,
+    MatGridListModule,ChartModule,
     MatInputModule,
     MatIconModule,
     BrowserAnimationsModule,

@@ -28,7 +28,9 @@ user:any;
   delete(id:any){
     return this.http.delete(environment.api+"auth/deleteMed"+`/${id}`);
    }
-
+   update(f:any,id:any,path:any){
+    return this.http.patch(environment.api+path+`/${id}`,f );
+   }
 getCurrentUser(f:any){
   let addedData = JSON.stringify(f.value);
          console.log ("addedData", addedData);

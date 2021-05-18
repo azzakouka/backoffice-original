@@ -52,10 +52,12 @@ code=Math.floor(Math.random() * 999999) + 100000;
 
   hopital:any[]=[];
   hopitals:any[]=[];
+  user:any="";
 
     constructor(private dataService: DataService,private router:Router,private http:HttpClient, private messageService: MessageService) { }
 
     ngOnInit() {
+      this.user=this.dataService.user;
       this.dataService.getAllHopitals().subscribe((data)=>{
         console.log(data);
         this.hopital.push(data);
