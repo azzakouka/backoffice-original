@@ -45,17 +45,7 @@ myChart:any;
                 borderWidth: 1
             }]
         },
-        options: {
-          scales: {
-                y:
-                  {type:'linear',
-                  display:true,
-                  position: 'right',
-                    beginAtZero: true,
-                  }
-
-          }
-      }
+       
     });
   }
 
