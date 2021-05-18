@@ -9,9 +9,10 @@ import { DataService } from '../data.service';
 })
 export class DashboardComponent implements OnInit {
   user:any;
-
+rdv:any[]=[];
 data: any;
 myChart:any;
+nbr:any[]=[];
     constructor(private dataService: DataService) {
       Chart.register(BarElement, BarController, CategoryScale,LinearScale, Filler, Legend, Title, Tooltip);
 
@@ -19,13 +20,18 @@ myChart:any;
 
   ngOnInit(): void {
     this.user=this.dataService.user;
-    this.myChart = new Chart('myChart', {
+
+    this.dataService.getAllRdv().subscribe((data:any)=>{
+      this.rdv=data["data"];
+      console.log(this.rdv[0].date_rdv.substr(5,2));
+      this.nbrRdv();
+      this.myChart = new Chart('myChart', {
         type: 'bar',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
             datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                label: 'Le nombre des rendez-vous par mois',
+                data: this.nbr,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -45,8 +51,26 @@ myChart:any;
                 borderWidth: 1
             }]
         },
-       
+
     });
+
+    });
+
+
+
+
   }
 
+  nbrRdv(){
+    let months=['01','02','03','04','05','06','07','08','09','10','11','12']
+    for(let i=0;i<months.length;i++)
+    {
+      let count=0;
+      for(let j=0;j<this.rdv.length;j++)
+        if(this.rdv[j].date_rdv.substr(5,2)==months[i])
+           count++;
+      this.nbr.push(count);
+      }
+    console.log(this.nbr);
+  }
 }

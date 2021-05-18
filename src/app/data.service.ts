@@ -54,6 +54,7 @@ getCurrentUser(f:any){
         })
        }
 
-
-
+    getAllRdv(): Observable<any[]>{
+        return this.http.get<any[]>(environment.api+"rdv/rdvs");
+      }
 }
