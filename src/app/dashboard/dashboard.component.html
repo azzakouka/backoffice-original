@@ -1,2 +1,60 @@
-<app-navbar [user]="user"></app-navbar>
-  <canvas id="myChart" style="height:100vh; width:200vw"> {{myChart}} </canvas>
+<div style="width: 100%;">
+  <app-navbar style="width:15%;height: 100%;" [user]="user"></app-navbar>
+  <div  >
+    <div style="width: 85%; height: 22%;float: right; background-color:#43cebb ;"  class="border border-dark ">
+      <button pButton   pRipple  style="background-color: #43cebb;float:right;margin:5px" label="Profil" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
+      <button pButton   pRipple style="background-color: #43cebb;float:right;" icon="pi pi-user" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
+
+  </div>
+ <div>
+  <h1>Tableau de bord</h1>
+
+  <div  class=" d-flex">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Le nombre des rendez-vous effectués par mois</h4>
+            <div style="height: 270px; width:50vw" class="mt-4">
+              <canvas id="myChart" style="height:100vh; width:200vw"> {{myChart}} </canvas>
+                </div>
+        </div>  </div>
+        </div>
+    <div class="col-md-4 mt-4">
+
+      <div class="card">
+        <div class="card-body">
+            <h4 class="card-title m-b-0">Users</h4>
+            <h2 class="font-light">35,658 <span class="font-16 text-success font-medium">+23%</span></h2>
+            <div class="m-t-30">
+                <div class="row text-center">
+                    <div class="col-6 border-right">
+                        <h4 class="m-b-0">58%</h4>
+                        <span class="font-14 text-muted">New Users</span>
+                    </div>
+                    <div class="col-6">
+                        <h4 class="m-b-0">42%</h4>
+                        <span class="font-14 text-muted">Repeat Users</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <div class="card">
+      <div class="card-body">
+          <h5 class="card-title m-b-5">Referral Earnings</h5>
+          <h3 class="font-light">$769.08</h3>
+          <div class="m-auto mt-2" style="height: 50px; width: 200px;">
+              miguidfhtjkmyjo
+          </div>
+      </div>
+  </div>
+
+  </div>
+
+  </div>
+ </div>
+
+
+  </div>
+</div>

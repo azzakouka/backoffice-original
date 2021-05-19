@@ -30,15 +30,20 @@ nbr:any[]=[];
         data: {
             labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
             datasets: [{
-                label: 'Le nombre des rendez-vous par mois',
                 data: this.nbr,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)',
+                  'rgba(230, 230, 88, 1)',
+                  'rgba(175, 88, 230, 1)',
+                  'rgba(230, 88, 110, 1)',
+                  'rgba(88, 119, 230, 1)',
+                  'rgba(230, 139, 88, 1)',
+                  'rgba(79, 174, 88, 1)'
                 ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
@@ -46,7 +51,13 @@ nbr:any[]=[];
                     'rgba(255, 206, 86, 1)',
                     'rgba(75, 192, 192, 1)',
                     'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(230, 230, 88, 1)',
+                    'rgba(175, 88, 230, 1)',
+                    'rgba(230, 88, 110, 1)',
+                    'rgba(88, 119, 230, 1)',
+                    'rgba(230, 139, 88, 1)',
+                    'rgba(79, 174, 88, 1)'
                 ],
                 borderWidth: 1
             }]
