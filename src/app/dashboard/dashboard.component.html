@@ -12,12 +12,75 @@
 <h1 style="font-weight:bold;margin:10px">Tableau de bord</h1>
 
 <div  class=" d-flex">
+
+  <div class="col-md-4">
+
+    <div class="card">
+      <div class="card-body">
+          <h4 class="card-title m-b-0">Users</h4>
+          <h2 class="font-light">35,658 <span class="font-16 text-success font-medium">+23%</span></h2>
+          <div class="m-t-30">
+              <div class="row text-center">
+                  <div class="col-6 border-right">
+                      <h4 class="m-b-0">58%</h4>
+                      <span class="font-14 text-muted">New Users</span>
+                  </div>
+                  <div class="col-6">
+                      <h4 class="m-b-0">42%</h4>
+                      <span class="font-14 text-muted">Repeat Users</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+  </div>
+
+  <div class="col-md-4">
+
+    <div  class="card">
+      <div class="card-body">
+          <h4 class="card-title m-b-0">Users</h4>
+          <h2 class="font-light">35,658 <span class="font-16 text-success font-medium">+23%</span></h2>
+          <div class="m-t-30">
+              <div class="row text-center">
+                  <div class="col-6 border-right">
+                      <h4 class="m-b-0">58%</h4>
+                      <span class="font-14 text-muted">New Users</span>
+                  </div>
+                  <div class="col-6">
+                      <h4 class="m-b-0">42%</h4>
+                      <span class="font-14 text-muted">Repeat Users</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+</div>
+
+<div class="col-md-4">
+
+  <div   class="card">
+    <div class="card-body">
+        <h4 class="card-title m-b-0">Users</h4>
+        <canvas id="myPie"  style="height:50px; width:50px"> {{myPie}} </canvas>
+
+    </div>
+</div>
+</div>
+
+</div>
+
+<div style="margin: 10px;" class=" d-flex">
   <div class="col-md-8">
     <div class="card">
       <div class="card-body">
-          <h4 class="card-title">Le nombre des rendez-vous effectués par mois en {{annee}} </h4>
-          <div style="height: 270px; width:50vw" class="mt-4">
-            <mat-form-field appearance="fill" style="width: 100%; " >
+          <h4 class="card-title text-center">Le nombre des rendez-vous effectués par mois en {{annee}} </h4>
+          <div style="height: 350px; width:50vw" class="mt-4">
+            <mat-form-field appearance="fill" style="width: 90%;margin: 10px; " >
               <mat-label>Choisissez l'annee souhaité</mat-label>
               <mat-select [(ngModel)]="annee" >
                 <mat-option *ngFor="let anee of tab " [value]="anee.anee" (click)="nbrRdv()" >
@@ -25,7 +88,7 @@
                 </mat-option>
               </mat-select>
             </mat-form-field>
-            <canvas id="myChart" style="height:100vh; width:200vw"> {{myChart}} </canvas>
+            <canvas id="myChart"  style="height:100vh; width:200vw"> {{myChart}} </canvas>
               </div>
       </div>  </div>
       </div>

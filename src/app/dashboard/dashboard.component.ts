@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {BarController, BarElement, Chart,CategoryScale, Filler, Legend, Title, Tooltip, LinearScale} from 'chart.js';
+import {BarController, BarElement, Chart,CategoryScale, Filler, Legend, Title, Tooltip, LinearScale, PieController, ArcElement} from 'chart.js';
 import { min } from 'rxjs/operators';
 import { DataService } from '../data.service';
 @Component({
@@ -12,7 +12,9 @@ export class DashboardComponent implements OnInit {
 rdv:any[]=[];
 data: any;
 myChart:any;
+myPie:any;
 nbr:any[]=[];
+montants:any[]=[];
 annee:any="2021";
 tab:any[]=[{anee:'2021'},
             {anee:'2020'},
@@ -20,7 +22,7 @@ tab:any[]=[{anee:'2021'},
             ];
 
     constructor(private dataService: DataService) {
-      Chart.register(BarElement, BarController, CategoryScale,LinearScale, Filler, Legend, Title, Tooltip);
+      Chart.register(BarElement, BarController,PieController, CategoryScale,LinearScale,ArcElement, Filler, Legend, Title, Tooltip);
 
       }
 
@@ -31,11 +33,49 @@ tab:any[]=[{anee:'2021'},
       this.rdv=data["data"];
       console.log(this.rdv[0].date_rdv.substr(5,2));
       this.nbrRdv();
-      this.myChart = new Chart ('myChart', {
+      this.myChart = new Chart('myChart', {
         type: 'bar',
         data: {
             labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
-            datasets: [{
+            datasets: [ {
+              label: 'Nombre des rendez-vous',
+              backgroundColor: '#42A5F5',
+              data: this.nbr
+          },
+          {
+              label: 'Somme des montants payé',
+              backgroundColor: '#FFA726',
+              data: [28, 48, 40, 19, 6, 27, 0]
+          }]
+        },
+
+    });
+
+    });
+
+    this.myChart = new Chart('myPie', {
+      type: 'pie',
+      data: {
+          labels: ['Janvier', 'Fevrier', 'Mars'],
+          datasets: [
+            {
+                data: [300, 50, 100],
+                backgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56"
+                ],
+                hoverBackgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56"
+                ]
+            }]
+      },
+
+  });
+
+/*{
                 data: this.nbr,
                 backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
@@ -66,13 +106,7 @@ tab:any[]=[{anee:'2021'},
                     'rgba(79, 174, 88, 1)'
                 ],
                 borderWidth: 1
-            }]
-        },
-
-    });
-
-    });
-
+              }*/
 
 
 
@@ -80,14 +114,19 @@ tab:any[]=[{anee:'2021'},
 
   nbrRdv(){
     this.nbr=[];
+    this.montants=[];
     let months=['01','02','03','04','05','06','07','08','09','10','11','12']
     for(let i=0;i<months.length;i++)
     {
       let count=0;
+      let montant=0;
       for(let j=0;j<this.rdv.length;j++)
         if(this.rdv[j].date_rdv.substr(5,2)==months[i] && this.rdv[j].date_rdv.substr(0,4)==this.annee)
-           count++;
+           {count++;
+           montant+=this.rdv[j].montant_rdv;
+          }
       this.nbr.push(count);
+      this.montants.push(montant);
       }
     console.log(this.nbr);
   }
