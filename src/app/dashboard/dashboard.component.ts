@@ -13,6 +13,12 @@ rdv:any[]=[];
 data: any;
 myChart:any;
 nbr:any[]=[];
+annee:any="2021";
+tab:any[]=[{anee:'2021'},
+            {anee:'2020'},
+            {anee:'2019'}
+            ];
+
     constructor(private dataService: DataService) {
       Chart.register(BarElement, BarController, CategoryScale,LinearScale, Filler, Legend, Title, Tooltip);
 
@@ -25,7 +31,7 @@ nbr:any[]=[];
       this.rdv=data["data"];
       console.log(this.rdv[0].date_rdv.substr(5,2));
       this.nbrRdv();
-      this.myChart = new Chart('myChart', {
+      this.myChart = new Chart ('myChart', {
         type: 'bar',
         data: {
             labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
@@ -73,12 +79,13 @@ nbr:any[]=[];
   }
 
   nbrRdv(){
+    this.nbr=[];
     let months=['01','02','03','04','05','06','07','08','09','10','11','12']
     for(let i=0;i<months.length;i++)
     {
       let count=0;
       for(let j=0;j<this.rdv.length;j++)
-        if(this.rdv[j].date_rdv.substr(5,2)==months[i])
+        if(this.rdv[j].date_rdv.substr(5,2)==months[i] && this.rdv[j].date_rdv.substr(0,4)==this.annee)
            count++;
       this.nbr.push(count);
       }
