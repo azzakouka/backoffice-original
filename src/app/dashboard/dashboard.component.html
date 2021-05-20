@@ -1,6 +1,7 @@
 <div style="width: 100%;" class="d-flex">
 
-  <app-navbar style="width:15%;height: 100%;" [user]="user"></app-navbar>
+    <app-navbar style="width:15%" [user]="user"></app-navbar>
+
 <div style="width: 85%; height: 22%;float: right;">
 
   <div style="width: 100%; height: 22%; background-color:#43cebb ;" >
@@ -11,71 +12,46 @@
 <div style="padding: 20px;margin-top: 50px;">
 <h1 style="font-weight:bold;margin:10px">Tableau de bord</h1>
 
-<div  class=" d-flex">
+<div class="d-flex col-md-12">
+  <div  class=" col-md-8">
 
-  <div class="col-md-4">
+    <div class=" d-flex">
+      <div class="col-md-6">
 
-    <div class="card">
-      <div class="card-body">
-          <h4 class="card-title m-b-0">Users</h4>
-          <h2 class="font-light">35,658 <span class="font-16 text-success font-medium">+23%</span></h2>
-          <div class="m-t-30">
-              <div class="row text-center">
-                  <div class="col-6 border-right">
-                      <h4 class="m-b-0">58%</h4>
-                      <span class="font-14 text-muted">New Users</span>
-                  </div>
-                  <div class="col-6">
-                      <h4 class="m-b-0">42%</h4>
-                      <span class="font-14 text-muted">Repeat Users</span>
+        <div class="card"  style="height: 100%;">
+          <div class="card-body">
+              <h4 class="card-title text-center m-b-0">Nombre des rendez-vous non confirmés</h4>
+              <div class="m-t-30">
+                  <div class="row text-center">
+                      <div class="col-12">
+                        <p-progressBar [value]="nombre"></p-progressBar>
+                      </div>
                   </div>
               </div>
           </div>
       </div>
-  </div>
+      </div>
 
-
-  </div>
-
-  <div class="col-md-4">
-
-    <div  class="card">
-      <div class="card-body">
-          <h4 class="card-title m-b-0">Users</h4>
-          <h2 class="font-light">35,658 <span class="font-16 text-success font-medium">+23%</span></h2>
-          <div class="m-t-30">
-              <div class="row text-center">
-                  <div class="col-6 border-right">
-                      <h4 class="m-b-0">58%</h4>
-                      <span class="font-14 text-muted">New Users</span>
-                  </div>
-                  <div class="col-6">
-                      <h4 class="m-b-0">42%</h4>
-                      <span class="font-14 text-muted">Repeat Users</span>
+      <div class="col-md-6">
+        <div  class="card">
+          <div class="card-body">
+              <h4 class="card-title m-b-0">Montant total du paiement de l'année derniere</h4>
+              <div class="m-t-30">
+                  <div class="row text-center">
+                      <div class="col-12">
+                          <h4 class="m-b-0"> {{montantPaie}} TND </h4>
+                      </div>
                   </div>
               </div>
           </div>
       </div>
-  </div>
-
-
-</div>
-
-<div class="col-md-4">
-
-  <div   class="card">
-    <div class="card-body">
-        <h4 class="card-title m-b-0">Users</h4>
-        <canvas id="myPie"  style="height:50px; width:50px"> {{myPie}} </canvas>
+    </div>
 
     </div>
-</div>
-</div>
 
-</div>
+<br>
 
-<div style="margin: 10px;" class=" d-flex">
-  <div class="col-md-8">
+  <div class="col-md-12">
     <div class="card">
       <div class="card-body">
           <h4 class="card-title text-center">Le nombre des rendez-vous effectués par mois en {{annee}} </h4>
@@ -88,43 +64,55 @@
                 </mat-option>
               </mat-select>
             </mat-form-field>
-            <canvas id="myChart"  style="height:100vh; width:200vw"> {{myChart}} </canvas>
+            <div  style="height:70%; width:90%">
+              <canvas id="myChart" style="height:90%; width:90%"> {{myChart}} </canvas>
+            </div>
               </div>
       </div>  </div>
       </div>
-  <div class="col-md-4">
 
-    <div  style="margin: 10px;" class="card">
+      <br>
+
+  <div class="col-md-12">
+    <div class="card">
       <div class="card-body">
-          <h4 class="card-title m-b-0">Users</h4>
-          <h2 class="font-light">35,658 <span class="font-16 text-success font-medium">+23%</span></h2>
-          <div class="m-t-30">
-              <div class="row text-center">
-                  <div class="col-6 border-right">
-                      <h4 class="m-b-0">58%</h4>
-                      <span class="font-14 text-muted">New Users</span>
-                  </div>
-                  <div class="col-6">
-                      <h4 class="m-b-0">42%</h4>
-                      <span class="font-14 text-muted">Repeat Users</span>
-                  </div>
+          <h4 class="card-title text-center">Le nombre des soins effectués  </h4>
+          <div style="height: 350px; width:50vw" class="mt-4">
+            <div  style="height:70%; width:90%">
+              <canvas id="chart" style="height:90%; width:90%"> {{chart}} </canvas>
+            </div>
               </div>
+      </div>  </div>
+      </div>
+  </div>
+
+  <div class=" col-md-4 ">
+    <div class="col-md-12">
+      <div   class="card">
+        <div class="card-body">
+            <h4 class="card-title text-center m-b-0" >La categorie d'age des patients</h4>
+            <div style="height:70%; width:90%">
+              <canvas id="myPie"  style="height:50%; width:50%"> {{myPie}} </canvas>
+            </div>
+        </div>
+    </div>
+    </div>
+
+<br>
+
+      <div class="col-md-12">
+        <div  style="height: 50vh;" class="card">
+          <div class="card-body">
+              <h4 class="card-title text-center m-b-0" >Le montant des paiements effectué chaque mois</h4>
+              <div style="height:100%;">
+                <canvas id="myLine" style="height: 90%;width: 100%;"> {{myLine}} </canvas>
+              </div>
+
           </div>
       </div>
   </div>
 
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title m-b-5">Referral Earnings</h5>
-        <h3 class="font-light">$769.08</h3>
-        <div class="m-auto mt-2" style="height: 50px; width: 200px;">
-            miguidfhtjkmyjo
-        </div>
-    </div>
-</div>
-
-</div>
-
+  </div>
 </div>
 
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {BarController, BarElement, Chart,CategoryScale, Filler, Legend, Title, Tooltip, LinearScale, PieController, ArcElement} from 'chart.js';
+import {BarController, BarElement, Chart,CategoryScale, Filler, Legend, Title, Tooltip, LinearScale, PieController, ArcElement, LineElement, LineController, PointElement} from 'chart.js';
 import { min } from 'rxjs/operators';
 import { DataService } from '../data.service';
 @Component({
@@ -13,6 +13,8 @@ rdv:any[]=[];
 data: any;
 myChart:any;
 myPie:any;
+myLine:any;
+chart:any;
 nbr:any[]=[];
 montants:any[]=[];
 annee:any="2021";
@@ -20,9 +22,11 @@ tab:any[]=[{anee:'2021'},
             {anee:'2020'},
             {anee:'2019'}
             ];
+nombre:number=0;
+montantPaie:number=0;
 
     constructor(private dataService: DataService) {
-      Chart.register(BarElement, BarController,PieController, CategoryScale,LinearScale,ArcElement, Filler, Legend, Title, Tooltip);
+      Chart.register(BarElement,LineElement,LineController,PointElement, BarController,PieController, CategoryScale,LinearScale,ArcElement, Filler, Legend, Title, Tooltip);
 
       }
 
@@ -31,8 +35,16 @@ tab:any[]=[{anee:'2021'},
 
     this.dataService.getAllRdv().subscribe((data:any)=>{
       this.rdv=data["data"];
-      console.log(this.rdv[0].date_rdv.substr(5,2));
+      for (let i=0;i<this.rdv.length;i++)
+      {
+        if(this.rdv[i].etat==false)
+          this.nombre++;
+      }
+      this.nombre/=100;
+
+      this.Montantpaiement();
       this.nbrRdv();
+
       this.myChart = new Chart('myChart', {
         type: 'bar',
         data: {
@@ -50,6 +62,33 @@ tab:any[]=[{anee:'2021'},
         },
 
     });
+
+    this.chart = new Chart('chart', {
+      type: 'bar',
+      data: {
+          labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+          datasets: [ {
+            label: 'Nombre des soins',
+            backgroundColor: '#42A5F5',
+            data: this.nbr
+        },
+       ]
+      },
+
+  });
+
+    this.myLine = new Chart('myLine', {
+      type: 'line',
+      data: {
+          labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+          datasets: [ {
+            label: 'Montant des paiements',
+            backgroundColor: '#42A5F5',
+            data: this.nbr
+        }]
+      },
+
+  });
 
     });
 
@@ -130,4 +169,19 @@ tab:any[]=[{anee:'2021'},
       }
     console.log(this.nbr);
   }
+
+  Montantpaiement(){
+
+    let total=0;
+    for(let j=0;j<this.rdv.length;j++)
+    if( this.rdv[j].date_rdv.substr(0,4)==this.annee && this.rdv[j].etat==true)
+       {
+         console.log(this.rdv[j].montant_rdv);
+       total+=this.rdv[j].montant_rdv;
+       console.log(total);
+      }
+      this.montantPaie=total;
+      console.log(this.montantPaie);
+  }
+
 }
