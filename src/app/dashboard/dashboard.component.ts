@@ -10,7 +10,12 @@ import { DataService } from '../data.service';
 export class DashboardComponent implements OnInit {
   user:any;
 rdv:any[]=[];
-data: any;
+soins:any[]=[];
+categ:any[]=[];
+benef:any="";
+enfants:number=0;
+adulte:number=0;
+age:number=0;
 myChart:any;
 myPie:any;
 myLine:any;
@@ -32,6 +37,34 @@ montantPaie:number=0;
 
   ngOnInit(): void {
     this.user=this.dataService.user;
+    console.log(this.categ);
+
+    this.dataService.getAllSoins().subscribe((data:any)=>{
+      this.soins=data["data"];
+      console.log(this.soins);
+      this.CategorieAge();
+      this.myChart = new Chart('myPie', {
+        type: 'pie',
+        data: {
+            labels: ['Enfant', 'Adulte', 'Vieux'],
+            datasets: [
+              {
+                  data: this.categ,
+                  backgroundColor: [
+                      "#FF6384",
+                      "#36A2EB",
+                      "#FFCE56"
+                  ],
+                  hoverBackgroundColor: [
+                      "#FF6384",
+                      "#36A2EB",
+                      "#FFCE56"
+                  ]
+              }]
+        },
+
+    });
+    });
 
     this.dataService.getAllRdv().subscribe((data:any)=>{
       this.rdv=data["data"];
@@ -92,27 +125,7 @@ montantPaie:number=0;
 
     });
 
-    this.myChart = new Chart('myPie', {
-      type: 'pie',
-      data: {
-          labels: ['Janvier', 'Fevrier', 'Mars'],
-          datasets: [
-            {
-                data: [300, 50, 100],
-                backgroundColor: [
-                    "#FF6384",
-                    "#36A2EB",
-                    "#FFCE56"
-                ],
-                hoverBackgroundColor: [
-                    "#FF6384",
-                    "#36A2EB",
-                    "#FFCE56"
-                ]
-            }]
-      },
 
-  });
 
 /*{
                 data: this.nbr,
@@ -176,12 +189,58 @@ montantPaie:number=0;
     for(let j=0;j<this.rdv.length;j++)
     if( this.rdv[j].date_rdv.substr(0,4)==this.annee && this.rdv[j].etat==true)
        {
-         console.log(this.rdv[j].montant_rdv);
        total+=this.rdv[j].montant_rdv;
-       console.log(total);
       }
       this.montantPaie=total;
-      console.log(this.montantPaie);
   }
+getBenef(f:any,a:any,ag:any){
+  this.categ=[0,0,0];
+  console.log(this.categ);
+  let count=0;
+  let ad=0;
+  let enf=0;
 
+  this.categ.push(f);
+    this.categ.push(a);
+    this.categ.push(ag);
+console.log(this.categ);
+}
+  CategorieAge(){
+    this.categ=[0,0,0];
+    console.log(this.categ);
+    let count=0;
+    let ad=0;
+    let enf=0;
+    let date=new Date();
+   for(let j=0;j<this.soins.length;j++){
+    this.dataService.getBenef(this.soins[j].cod_benef,this.user.cod_hop).subscribe((data:any)=>{
+      let diff=date.getFullYear()-new Date(data['data'][0].date_nai_benef).getFullYear();
+      console.log(diff);
+      if(diff>=1 && diff <=18)
+       { enf++;
+        //this.categ[0]=enf;
+        //this.enfants=enf;
+      }
+      else
+      {
+          if(diff>18 && diff <=60)
+            {
+              ad++;
+              //this.categ[1]=ad;
+             // this.adulte=ad;
+            }
+            else
+              if(diff>60)
+               {count++;
+                //this.categ[2]=count;
+              //  this.age=count;
+              }
+      }
+      this.getBenef(enf,ad,count);
+    });
+
+    }
+
+    console.log(this.categ);
+  }
 }

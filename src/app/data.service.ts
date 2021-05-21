@@ -57,4 +57,12 @@ getCurrentUser(f:any){
     getAllRdv(): Observable<any[]>{
         return this.http.get<any[]>(environment.api+"rdv/rdvs");
       }
+
+      getAllSoins(): Observable<any[]>{
+        return this.http.get<any[]>(environment.api+"users/soin");
+       }
+
+     getBenef(cod_benef: any,code_hop: any){
+        return this.http.get<any[]>(environment.api+"auth/benef"+`/${cod_benef}`+`/${code_hop}`);
+      }
 }
