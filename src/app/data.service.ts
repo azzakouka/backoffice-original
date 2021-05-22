@@ -65,4 +65,9 @@ getCurrentUser(f:any){
      getBenef(cod_benef: any,code_hop: any){
         return this.http.get<any[]>(environment.api+"auth/benef"+`/${cod_benef}`+`/${code_hop}`);
       }
+
+      getRegime(reg:any): Observable<any>{
+        return this.http.get<any>(environment.api+"users/regimes"+`/${reg}`);
+
+      }
 }

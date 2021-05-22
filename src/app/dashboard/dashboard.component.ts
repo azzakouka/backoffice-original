@@ -13,6 +13,10 @@ rdv:any[]=[];
 soins:any[]=[];
 categ:any[]=[];
 benef:any="";
+nonRdv:any[]=[];
+cnss:any[]=[];
+tComplet:any[]=[];
+cnam:any[]=[];
 enfants:number=0;
 adulte:number=0;
 age:number=0;
@@ -42,11 +46,12 @@ montantPaie:number=0;
     this.dataService.getAllSoins().subscribe((data:any)=>{
       this.soins=data["data"];
       console.log(this.soins);
-      this.CategorieAge();
+      this.getTypeBen();
+     // this.CategorieAge();
       this.myChart = new Chart('myPie', {
         type: 'pie',
         data: {
-            labels: ['Enfant', 'Adulte', 'Vieux'],
+            labels: ['Cnam', 'Cnss/Cnrps', 'Tarif Complet'],
             datasets: [
               {
                   data: this.categ,
@@ -83,14 +88,14 @@ montantPaie:number=0;
         data: {
             labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
             datasets: [ {
-              label: 'Nombre des rendez-vous',
+              label: 'Nombre des rendez-vous confirmé',
               backgroundColor: '#42A5F5',
               data: this.nbr
           },
           {
-              label: 'Somme des montants payé',
+              label: 'Nombre des rendez-vous non confirmé',
               backgroundColor: '#FFA726',
-              data: [28, 48, 40, 19, 6, 27, 0]
+              data: this.nonRdv
           }]
         },
 
@@ -101,10 +106,20 @@ montantPaie:number=0;
       data: {
           labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
           datasets: [ {
-            label: 'Nombre des soins',
-            backgroundColor: '#42A5F5',
-            data: this.nbr
+            label: 'Nombre CNSS',
+            backgroundColor: '#10b08d',
+            data: [50,2,5,5,65,65,65,62,5,9,98,65]
         },
+        {
+          label: 'Nombre des tarifs complets',
+          backgroundColor: '#102db0',
+          data: [50,2,5,5,65,65,65,62,5,9,98,65]
+        },
+      {
+        label: 'Nombre CNAM',
+        backgroundColor: '#6d10b0',
+        data: [50,2,5,5,65,65,65,62,5,9,98,65]
+      },
        ]
       },
 
@@ -164,6 +179,28 @@ montantPaie:number=0;
 
   }
 
+  getTypeBen(){
+    let cn=0;
+    let tc=0;
+    let cnr=0;
+    for(let j=0;j<this.soins.length;j++)
+    {
+      if(this.soins[j].regime=="c11")
+        cn++;
+      else
+      {
+        if(this.soins[j].regime=="c12")
+          cnr++;
+        else
+        if(this.soins[j].regime=="p10")
+        tc++;
+      }
+    }
+    this.categ.push(cn);
+    this.categ.push(cnr);
+    this.categ.push(tc);
+    console.log(this.categ);
+  }
   nbrRdv(){
     this.nbr=[];
     this.montants=[];
@@ -171,14 +208,23 @@ montantPaie:number=0;
     for(let i=0;i<months.length;i++)
     {
       let count=0;
-      let montant=0;
+      let conf=0;
+      //let montant=0;
       for(let j=0;j<this.rdv.length;j++)
-        if(this.rdv[j].date_rdv.substr(5,2)==months[i] && this.rdv[j].date_rdv.substr(0,4)==this.annee)
-           {count++;
-           montant+=this.rdv[j].montant_rdv;
+        {if(this.rdv[j].date_rdv.substr(5,2)==months[i] && this.rdv[j].date_rdv.substr(0,4)==this.annee && this.rdv[j].etat==true)
+           {
+             count++;
+          // montant+=this.rdv[j].montant_rdv;
           }
+          else
+          if(this.rdv[j].date_rdv.substr(5,2)==months[i] && this.rdv[j].date_rdv.substr(0,4)==this.annee && this.rdv[j].etat==false)
+           {
+             conf++;
+          }
+        }
       this.nbr.push(count);
-      this.montants.push(montant);
+      this.nonRdv.push(conf);
+     // this.montants.push(montant);
       }
     console.log(this.nbr);
   }

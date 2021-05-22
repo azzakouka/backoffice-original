@@ -1,0 +1,31 @@
+.c1{
+  background: linear-gradient(
+    270deg ,#d38312,#a83279)!important;
+}
+
+.c2{
+  background: linear-gradient(
+    270deg,#134e5e,#71b280)!important;
+}
+
+.c3{
+  background: linear-gradient(
+    90deg,#c33764,#1d2671)!important;
+}
+
+.c4{
+  background: linear-gradient(
+    270deg ,#3a7bd5,#3a6073)!important;
+}
+
+h4{
+  font-weight: bold;
+}
+
+.card{
+  border-radius: 5px;
+    box-shadow: 0 1px 2.94px 0.06px rgb(4 26 55 / 16%);
+    border: none;
+    margin: 8px 0 25px;
+    transition: all .3s ease-in-out;
+}
