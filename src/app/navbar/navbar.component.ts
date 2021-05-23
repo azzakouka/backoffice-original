@@ -17,18 +17,10 @@ export class NavbarComponent implements OnInit {
 
    }
 
-logout(){
-   this.http.delete(environment.api+"/logout" +`/${this.user._id}`);
-   this.router.navigate(['/login']);
 
-}
-
-verifprofil(){
-  this.router.navigate(['/profil',this.user._id]);
-}
 
   ngOnInit(): void {
 console.log(this.user);
-  
+
   }
 }

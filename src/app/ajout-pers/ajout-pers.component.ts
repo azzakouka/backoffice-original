@@ -113,5 +113,13 @@ code=Math.floor(Math.random() * 999999) + 100000;
       this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
       });
    }
+   logout(){
+    this.http.delete(environment.api+"/logout" +`/${this.user._id}`);
+    this.router.navigate(['/login']);
 
+ }
+
+ verifprofil(){
+   this.router.navigate(['/profil',this.user._id]);
+ }
 }

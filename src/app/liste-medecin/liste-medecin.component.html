@@ -1,31 +1,40 @@
-<app-navbar [user]="user" ></app-navbar>
+<div style="width: 100%;" class="d-flex">
+  <app-navbar style="width:15%" [user]="user"></app-navbar>
+  <div style="width: 100%; float: right;">
+    <div style=" height: 9%; background-color:#43cebb;padding: 5px;" >
+      <button pButton  (click)="verifprofil()" pRipple  style="background-color: #43cebb;float:right;margin:5px" label="Profil" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
+      <button pButton (click)="logout()"  pRipple style="background-color: #43cebb;float:right;" icon="pi pi-user" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
+  </div><br>
 
-<div style="background-color: #f1f2f3; height: 100%;margin: 10px;"class="card " >
-    <div style="margin-top: 30px;">
-      <p-toast position="top-right"></p-toast>
-      <p-confirmDialog appendTo="body" [style]="{width: '50vw'}"></p-confirmDialog>
-      <h2 class="text-center " style="color: rgb(46, 146, 138);  font-family: 'Times New Roman', Times, serif;">Liste Des Médecins</h2>
-      <p-table style="margin: 20px;" [value]="medecins" [scrollable]="true" scrollHeight="500px">
-        <ng-template pTemplate="header" >
-          <tr>
-        <th>Nom</th>
-        <th>Prenom</th>
-        <th>Service</th>
-        <th>Specialité</th>
-        <th>status</th>
-        <th>Action</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-medecin>
-          <tr>
-            <td>{{medecin.nom_med}}</td>
-            <td>{{medecin.prenom_med}}</td>
-            <td>{{medecin.service}}</td>
-            <td>{{medecin.specialite}}</td>
-            <td><span class="badge text-white bg-success">actif</span></td>
-            <td><i style="color: red;" (click)="confirm2(medecin._id)" class=" pi pi-trash p-2"></i></td>
-          </tr>
-        </ng-template>
-      </p-table>
+    <div style="background-color: #f1f2f3; height: 100%;margin: 10px;"class="card " >
+      <div style="margin-top: 30px;">
+        <p-toast position="top-right"></p-toast>
+        <p-confirmDialog appendTo="body" [style]="{width: '50vw'}"></p-confirmDialog>
+        <h2 class="text-center " style="color: rgb(46, 146, 138);  font-family: 'Times New Roman', Times, serif;">Liste Des Médecins</h2>
+        <p-table style="margin: 20px;" [value]="medecins" [scrollable]="true" scrollHeight="500px">
+          <ng-template pTemplate="header" >
+            <tr>
+          <th>Nom</th>
+          <th>Prenom</th>
+          <th>Service</th>
+          <th>Specialité</th>
+          <th>status</th>
+          <th>Action</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-medecin>
+            <tr>
+              <td>{{medecin.nom_med}}</td>
+              <td>{{medecin.prenom_med}}</td>
+              <td>{{medecin.service}}</td>
+              <td>{{medecin.specialite}}</td>
+              <td><span class="badge text-white bg-success">actif</span></td>
+              <td><i style="color: red;" (click)="confirm2(medecin._id)" class=" pi pi-trash p-2"></i></td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
     </div>
-  </div>
+
+    </div>
+</div>

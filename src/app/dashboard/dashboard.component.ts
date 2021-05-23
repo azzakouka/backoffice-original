@@ -1,6 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {BarController, BarElement, Chart,CategoryScale, Filler, Legend, Title, Tooltip, LinearScale, PieController, ArcElement, LineElement, LineController, PointElement} from 'chart.js';
 import { min } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { DataService } from '../data.service';
 @Component({
   selector: 'app-dashboard',
@@ -36,7 +39,7 @@ tab:any[]=[{anee:'2021'},
 nombre:number=0;
 montantPaie:number=0;
 
-    constructor(private dataService: DataService) {
+    constructor(private dataService: DataService,private http:HttpClient,private router:Router) {
       Chart.register(BarElement,LineElement,LineController,PointElement, BarController,PieController, CategoryScale,LinearScale,ArcElement, Filler, Legend, Title, Tooltip);
 
       }
@@ -265,5 +268,13 @@ montantPaie:number=0;
       }
 
   }
+  logout(){
+    this.http.delete(environment.api+"/logout" +`/${this.user._id}`);
+    this.router.navigate(['/login']);
 
+ }
+
+ verifprofil(){
+   this.router.navigate(['/profil',this.user._id]);
+ }
 }

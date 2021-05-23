@@ -66,6 +66,15 @@ confirm2(id:any) {
   });
  }
 
+ logout(){
+  this.http.delete(environment.api+"/logout" +`/${this.user._id}`);
+  this.router.navigate(['/login']);
+
+}
+
+verifprofil(){
+ this.router.navigate(['/profil',this.user._id]);
+}
 }
 
 
