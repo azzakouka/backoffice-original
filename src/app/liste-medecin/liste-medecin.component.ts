@@ -17,21 +17,23 @@ export class ListeMedecinComponent implements OnInit {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     })
-  } 
+  }
   medecins:any[]=[];
   user:any;
-
+codhop:any;
   constructor(private confirmationService: ConfirmationService, private messageService: MessageService,private dataService: DataService,private router:Router, private http:HttpClient) { }
 
   ngOnInit(): void {
     this.user=this.dataService.user;
-    this.dataService.getAllMedecins().subscribe(data=>{
+    this.codhop=this.dataService.codhop;
+
+    this.dataService.getAllMedecins(this.codhop).subscribe(data=>{
       console.log(data);
       this.medecin.push(data);
       console.log(this.medecin[0]['data']);
       this.medecins=this.medecin[0]['data'];
     console.log(this.medecins);
-   
+
     });
 }
 

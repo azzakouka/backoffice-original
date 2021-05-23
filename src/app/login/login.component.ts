@@ -21,15 +21,20 @@ export class LoginComponent implements OnInit {
   }
   mail:any="";
   mdp:any="";
-
+  hopitals:any[]=[];
+  codhop:any;
   constructor(private dataService: DataService,private router:Router,private http:HttpClient) { }
 
   public ngOnInit(): void {
- 
+    this.dataService.getAllHopitals().subscribe((data:any)=>{
+      console.log(data['data']);
+      this.hopitals=data['data'];
+      console.log(this.hopitals);
+    })
   }
 
   Submit(form:any){
     console.log ("form.value", form.value)
-    this.dataService.getCurrentUser(form);
+    this.dataService.getCurrentUser(form,this.codhop);
    }
 }

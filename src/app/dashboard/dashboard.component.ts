@@ -12,7 +12,9 @@ export class DashboardComponent implements OnInit {
 rdv:any[]=[];
 soins:any[]=[];
 categ:any[]=[];
+patients:any[]=[];
 benef:any="";
+codhop:any="";
 nonRdv:any[]=[];
 cnss:any[]=[];
 tComplet:any[]=[];
@@ -41,13 +43,18 @@ montantPaie:number=0;
 
   ngOnInit(): void {
     this.user=this.dataService.user;
-    console.log(this.categ);
+    this.codhop=this.dataService.codhop;
 
-    this.dataService.getAllSoins().subscribe((data:any)=>{
+    this.dataService.getAllBenef(this.codhop).subscribe((data:any)=>{
+      this.patients=data['data'];
+      console.log(this.patients);
+      this.CategorieAge();
+    });
+
+    this.dataService.getAllSoins(this.codhop).subscribe((data:any)=>{
       this.soins=data["data"];
-      console.log(this.soins);
       this.getTypeBen();
-     // this.CategorieAge();
+
       this.myChart = new Chart('myPie', {
         type: 'pie',
         data: {
@@ -71,15 +78,8 @@ montantPaie:number=0;
     });
     });
 
-    this.dataService.getAllRdv().subscribe((data:any)=>{
+    this.dataService.getAllRdv(this.codhop).subscribe((data:any)=>{
       this.rdv=data["data"];
-      for (let i=0;i<this.rdv.length;i++)
-      {
-        if(this.rdv[i].etat==false)
-          this.nombre++;
-      }
-      this.nombre/=100;
-
       this.Montantpaiement();
       this.nbrRdv();
 
@@ -101,7 +101,7 @@ montantPaie:number=0;
 
     });
 
-    this.chart = new Chart('chart', {
+    /*this.chart = new Chart('chart', {
       type: 'bar',
       data: {
           labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
@@ -123,16 +123,16 @@ montantPaie:number=0;
        ]
       },
 
-  });
+  });*/
 
     this.myLine = new Chart('myLine', {
       type: 'line',
       data: {
-          labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+          labels: ['2019', '2020', '2021'],
           datasets: [ {
             label: 'Montant des paiements',
-            backgroundColor: '#42A5F5',
-            data: this.nbr
+            backgroundColor: '#102db0',
+            data: this.montants
         }]
       },
 
@@ -201,6 +201,7 @@ montantPaie:number=0;
     this.categ.push(tc);
     console.log(this.categ);
   }
+
   nbrRdv(){
     this.nbr=[];
     this.montants=[];
@@ -214,7 +215,6 @@ montantPaie:number=0;
         {if(this.rdv[j].date_rdv.substr(5,2)==months[i] && this.rdv[j].date_rdv.substr(0,4)==this.annee && this.rdv[j].etat==true)
            {
              count++;
-          // montant+=this.rdv[j].montant_rdv;
           }
           else
           if(this.rdv[j].date_rdv.substr(5,2)==months[i] && this.rdv[j].date_rdv.substr(0,4)==this.annee && this.rdv[j].etat==false)
@@ -224,69 +224,46 @@ montantPaie:number=0;
         }
       this.nbr.push(count);
       this.nonRdv.push(conf);
-     // this.montants.push(montant);
       }
     console.log(this.nbr);
   }
 
   Montantpaiement(){
-
-    let total=0;
-    for(let j=0;j<this.rdv.length;j++)
-    if( this.rdv[j].date_rdv.substr(0,4)==this.annee && this.rdv[j].etat==true)
-       {
-       total+=this.rdv[j].montant_rdv;
-      }
-      this.montantPaie=total;
+    let annee=['2019','2020','2021'];
+    for(let i=0;i<annee.length;i++)
+    {
+      let total=0;
+      for(let j=0;j<this.rdv.length;j++)
+        if( this.rdv[j].date_rdv.substr(0,4)==annee[i] && this.rdv[j].etat==true)
+          {
+          total+=this.rdv[j].montant_rdv;
+          }
+      this.montants.push(total);
+    }
+    console.log(this.montants);
   }
-getBenef(f:any,a:any,ag:any){
-  this.categ=[0,0,0];
-  console.log(this.categ);
-  let count=0;
-  let ad=0;
-  let enf=0;
 
-  this.categ.push(f);
-    this.categ.push(a);
-    this.categ.push(ag);
-console.log(this.categ);
-}
   CategorieAge(){
-    this.categ=[0,0,0];
-    console.log(this.categ);
-    let count=0;
-    let ad=0;
-    let enf=0;
     let date=new Date();
-   for(let j=0;j<this.soins.length;j++){
-    this.dataService.getBenef(this.soins[j].cod_benef,this.user.cod_hop).subscribe((data:any)=>{
-      let diff=date.getFullYear()-new Date(data['data'][0].date_nai_benef).getFullYear();
+   for(let j=0;j<this.patients.length;j++){
+         let diff=date.getFullYear()-new Date(this.patients[j].date_nai_benef).getFullYear();
       console.log(diff);
       if(diff>=1 && diff <=18)
-       { enf++;
-        //this.categ[0]=enf;
-        //this.enfants=enf;
+       {
+         this.enfants++;
       }
       else
       {
           if(diff>18 && diff <=60)
             {
-              ad++;
-              //this.categ[1]=ad;
-             // this.adulte=ad;
+              this.adulte++;
             }
             else
               if(diff>60)
-               {count++;
-                //this.categ[2]=count;
-              //  this.age=count;
-              }
+                this.age++;
       }
-      this.getBenef(enf,ad,count);
-    });
+      }
 
-    }
-
-    console.log(this.categ);
   }
+
 }

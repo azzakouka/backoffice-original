@@ -15,15 +15,20 @@ export class DataService {
   }
   id:any;
 user:any;
+codhop:any;
+
   constructor(private http: HttpClient,private router:Router) { }
   getAllHopitals(): Observable<any[]> {
     return this.http.get<any[]>(environment.api+"rdv");
 }
-  getAllMedecins(): Observable<any[]> {
-    return this.http.get<any[]>(environment.api+"users/medecins");
+  getAllMedecins(cod_hop:any): Observable<any[]> {
+    return this.http.get<any[]>(environment.api+"users/medecins"+`/${cod_hop}`);
   }
-  getAllPharmaciens(): Observable<any[]> {
-    return this.http.get<any[]>(environment.api+"users/pharmaciens");
+  getAllPharmaciens(cod_hop:any): Observable<any[]> {
+    return this.http.get<any[]>(environment.api+"users/pharmaciens"+`/${cod_hop}`);
+  }
+  getAllBenef(cod_hop:any): Observable<any[]> {
+    return this.http.get<any[]>(environment.api+"users/benefs"+`/${cod_hop}`);
   }
   delete(id:any){
     return this.http.delete(environment.api+"auth/deleteMed"+`/${id}`);
@@ -31,12 +36,13 @@ user:any;
    update(f:any,id:any,path:any){
     return this.http.patch(environment.api+path+`/${id}`,f );
    }
-getCurrentUser(f:any){
+getCurrentUser(f:any,codhop:any){
   let addedData = JSON.stringify(f.value);
          console.log ("addedData", addedData);
     return this.http.post(environment.api+"auth/loginUser", addedData,this.httpOptions).subscribe((res:any) => {
           localStorage.setItem("token",res.token)
           this.user=res.user;
+          this.codhop=codhop;
           console.log(this.user);
          // this.verify(this.id);
           this.router.navigate(['/dash']);
@@ -54,12 +60,12 @@ getCurrentUser(f:any){
         })
        }
 
-    getAllRdv(): Observable<any[]>{
-        return this.http.get<any[]>(environment.api+"rdv/rdvs");
+    getAllRdv(cod_hop:any): Observable<any[]>{
+        return this.http.get<any[]>(environment.api+"rdv/rdvs"+`/${cod_hop}`);
       }
 
-      getAllSoins(): Observable<any[]>{
-        return this.http.get<any[]>(environment.api+"users/soin");
+      getAllSoins(cod_hop:any): Observable<any[]>{
+        return this.http.get<any[]>(environment.api+"rdv/soinHop"+`/${cod_hop}`);
        }
 
      getBenef(cod_benef: any,code_hop: any){
