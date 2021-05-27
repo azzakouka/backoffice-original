@@ -58,7 +58,7 @@ import {ProgressBarModule} from 'primeng/progressbar';
     BrowserModule,ToastModule,
     AppRoutingModule,MatFormFieldModule,
     TableModule,FormsModule,
-    HttpClientModule,
+    HttpClientModule,ToastModule,
     InputSwitchModule,BrowserAnimationsModule
   ],
 

@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   mdp:any="";
   hopitals:any[]=[];
   codhop:any;
-  constructor(private dataService: DataService,private router:Router,private http:HttpClient) { }
+  constructor(private dataService: DataService,private router:Router,private http:HttpClient,private messageService: MessageService) { }
 
   public ngOnInit(): void {
     this.dataService.getAllHopitals().subscribe((data:any)=>{
@@ -36,5 +36,9 @@ export class LoginComponent implements OnInit {
   Submit(form:any){
     console.log ("form.value", form.value)
     this.dataService.getCurrentUser(form,this.codhop);
-   }
+    if(this.dataService.user==null)
+        this.messageService.add({severity:'error', summary: ' Message', detail:'Données incorrectes'});
+
+  }
+   
 }

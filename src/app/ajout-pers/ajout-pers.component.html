@@ -19,8 +19,7 @@
        <mat-tab-group class="card wizard-card" mat-stretch-tabs style="opacity: 80%;">
            <mat-tab label="Medecin" >
           <form #f="ngForm"  (ngSubmit)="Submit(f)">
-            <input type="hidden" pInputText [(ngModel)]="enabled" name="enabled"  required #t="ngModel">
-            <input type="hidden" pInputText [(ngModel)]="status" name="status"  required #st="ngModel">
+            <input type="hidden" pInputText [(ngModel)]="user.cod_hop" name="cod_hop"  required #st="ngModel">
 
               <div class="  row" >
                 <div class="card-header container">
@@ -120,7 +119,7 @@
                         La capacité est un champ obligatoire
                         </div></div>
 
-                        <div class="form-group" style="width: 100%;">
+                        <!--<div class="form-group" style="width: 100%;">
                             <div class="p-field p-col-12 p-md-4" style="width: 100%;">
 
                                <div  class="p-inputgroup" style="width: 100%;">
@@ -134,7 +133,7 @@
                                   </mat-form-field>
                                </div>
                            </div>
-                        </div>
+                        </div>-->
 
                         <div class="form-group" style="width: 100%;">
                             <div class="p-field p-col-12 p-md-4" style="width: 100%;">
@@ -171,9 +170,8 @@
 
            <mat-tab label="Pharmacien">
              <form #f2="ngForm"  (ngSubmit)="SubmitUser(f2)">
-                <input type="hidden" pInputText [(ngModel)]="status" name="status"  required #st="ngModel">
-                <input type="hidden" pInputText [(ngModel)]="enabled" name="enabled"  required #en="ngModel">
-              <div class="  row" >
+                <input type="hidden" pInputText [(ngModel)]="user.cod_hop" name="cod_hop"  required #st="ngModel">
+                <div class="  row" >
                 <div class="card-header container">
                 <h4 class="card-title text-dark text-center">
                 INFORMATIONS DU PHARMACIEN

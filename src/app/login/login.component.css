@@ -3,8 +3,9 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 .cnt{
-  background-image: url('../../assets/hop1.jpg');
+  background-image: url('../../assets/cl.jpg');
   background-size: cover;
+  height: 100vh;
   background-repeat: no-repeat;
   font-family: 'Numans', sans-serif;align-content: center;
 }
