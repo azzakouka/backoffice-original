@@ -35,7 +35,14 @@ i{  color:rgb(29, 138, 120);
   color: red;
   font-weight: 700;
 }
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
 
+input.example-right-align {
+  -moz-appearance: textfield;
+}
 /* Styles for the active tab label */
 .mat-tab-label.mat-tab-label-active {
   text-align: center;

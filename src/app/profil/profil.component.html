@@ -2,6 +2,7 @@
 <div style="width: 100%;" class="d-flex">
 
   <app-navbar style="width:15%" [user]="user"></app-navbar>
+  <p-toast position="top-right"></p-toast>
 
 <div style="width: 100%; float: right;">
 
@@ -13,8 +14,8 @@
   <div class=" container main-body">
 
         <div class="row gutters-sm">
-          <div class="col-md-4 mb-3">
-            <div class="card">
+          <div class="col-md-4 mb-3" >
+            <div class="card"  style="height:80vh;">
               <div class="card-body">
                 <div class="d-flex flex-column align-items-center text-center">
                   <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
@@ -28,24 +29,34 @@
 
           </div>
           <div class="col-md-8">
-            <div class="card mb-3">
+            <div class="card mb-3"  style="margin-top: 15%;height: 50vh;">
               <div class="card-body">
-
+                <h1 style="font-weight: bold;margin:5px">Modifie votre profil</h1>
                <div >
                 <form #f="ngForm" (ngSubmit)="Submit(f)" class="row">
 
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="account-email">E-mail </label>
-                            <input class="form-control" type="email" id="account-email" name="email" [(ngModel)]="user.email">
+                            <input class="form-control" type="email" id="account-email" name="email" [(ngModel)]="user.email" #email="ngModel"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                        </div>
+                        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                          <div *ngIf = "email.errors?.pattern && email.touched">
+                            email invalide
+                          </div>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="account-pass">Nouveau Mot de passe</label>
-                            <input class="form-control" name="password" [(ngModel)]="pass"  [placeholder]="user.password" type="password" id="account-pass">
+                            <input class="form-control" name="password" [(ngModel)]="pass"  [placeholder]="user.password" type="password"  #userPassword="ngModel" minlength="8" id="account-pass">
                         </div>
+                        <div *ngIf="userPassword.touched" class="alert alert-danger">
+                          <div *ngIf = "userPassword.invalid; ">
+                            veillez saisir un mot de passe de 8 charachteres
+                          </div>
+                           </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
@@ -60,7 +71,7 @@
                                 <input class="custom-control-input" type="checkbox" id="subscribe_me" checked="">
                                 <label class="custom-control-label" for="subscribe_me">Subscribe me to Newsletter</label>
                             </div>-->
-                            <button class="btn btn-style-1" style="background-color: #43cebb;color: white;float: right;" type="submit" data-toast="" data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Success!" data-toast-message="Your profile updated successfuly.">Mettre a jour</button>
+                            <button class="btn btn-style-1" style="background-color:#FFC909;color: white;float: right;" type="submit" [disabled]="!f.valid" >Mettre a jour</button>
 
                     </div>
                 </form>

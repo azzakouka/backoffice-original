@@ -11,8 +11,8 @@
 </div><br>
 <div style="padding: 10px;">
 <h1 style="font-weight:bold;margin:10px">Tableau de bord</h1>
-
-<div class="d-flex col-md-12">
+<button pButton pRipple style="background-color: #FFC909;float: right;margin-bottom: 5px;" icon="pi pi-print" label="Imprimer les statistiques" printSectionId="print" ngxPrint type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
+<div id="print" class="d-flex col-md-12">
   <div  class=" col-md-9">
 
     <div class=" d-flex">
@@ -70,7 +70,7 @@
     <div class="card">
       <div class="card-body">
           <h4 class="card-title text-center">Le nombre des rendez-vous effectués par mois en {{annee}} </h4>
-          <div style="height: 400px; width:50vw" class="mt-4">
+          <div style="height:370px; width:50vw" class="mt-4">
             <mat-form-field appearance="fill" style="width: 90%;margin: 10px; " >
               <mat-label>Choisissez l'annee souhaité</mat-label>
               <mat-select [(ngModel)]="annee" >

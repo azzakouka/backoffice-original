@@ -13,6 +13,7 @@ import { DataService } from '../data.service';
 export class AjoutPersComponent implements OnInit {
   name?:any="";
   prenom?:any="";
+  hide:any=true;
   password?:any="";
   email?:any="";
   specialite?:any="";

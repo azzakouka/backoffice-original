@@ -35,6 +35,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { ProfilComponent } from './profil/profil.component';
 import {ChartModule} from 'primeng/chart';
 import {ProgressBarModule} from 'primeng/progressbar';
+import {NgxPrintModule} from 'ngx-print';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import {ProgressBarModule} from 'primeng/progressbar';
     MatCheckboxModule,ConfirmDialogModule,
     MatGridListModule,ChartModule,
     MatInputModule,
-    MatIconModule,
+    MatIconModule,NgxPrintModule,
     BrowserAnimationsModule,
     DropdownModule,MatSelectModule,SidebarModule,
     BrowserModule,ToastModule,
@@ -62,7 +63,7 @@ import {ProgressBarModule} from 'primeng/progressbar';
     InputSwitchModule,BrowserAnimationsModule
   ],
 
-    exports:[MatTabsModule,MatFormFieldModule,DropdownModule,MatSelectModule,SidebarModule,BrowserAnimationsModule],
+    exports:[MatTabsModule,MatFormFieldModule,DropdownModule,MatSelectModule,SidebarModule,BrowserAnimationsModule,MatIconModule],
     providers: [ConfirmationService, DataService,MessageService,{ provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }   ],
     bootstrap: [AppComponent]
 })

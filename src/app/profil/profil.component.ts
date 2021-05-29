@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 import { DataService } from '../data.service';
 
@@ -22,7 +23,7 @@ export class ProfilComponent implements OnInit {
   rendezvous:any;
   edit=false;
 
-    constructor(private http:HttpClient,private dataService:DataService,private router:Router) {
+    constructor(private http:HttpClient,private dataService:DataService,private router:Router,private messageService:MessageService) {
 
     }
     ngOnInit(): void {
@@ -36,14 +37,20 @@ export class ProfilComponent implements OnInit {
         if(this.mdp==f.value.password)
         {
           this.dataService.update(f.value,this.user._id,"auth/modifResp").subscribe( (Response) => {
+            this.messageService.add({severity:'success', summary: ' Message', detail:'modification enregistrée avec succés'});
+
             console.log("success");
         },
           (error) =>{
+            this.messageService.add({severity:'danger', summary: ' Erreur', detail:'erreur lors de la modification'});
             console.log("error");
       });
         }
         else
-        console.log("incorrect mdp");
+        {
+          this.messageService.add({severity:'danger', summary: ' Erreur', detail:'erreur lors de la modification'});
+          console.log("incorrect mdp");
+        }
       }
       else
      {
@@ -51,9 +58,11 @@ export class ProfilComponent implements OnInit {
        if(this.user.password==f.value.password)
         {
           this.dataService.update(f.value,this.user._id,"auth/modifResp").subscribe( (Response) => {
+            this.messageService.add({severity:'success', summary: ' Message', detail:'modification enregistrée avec succés'});
             console.log("success");
         },
           (error) =>{
+            this.messageService.add({severity:'danger', summary: ' Erreur', detail:'erreur lors de la modification'});
             console.log("error");
       });
      }}

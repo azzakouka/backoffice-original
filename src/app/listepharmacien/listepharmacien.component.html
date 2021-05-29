@@ -10,13 +10,13 @@
 
 </div><br>
 
-<div style="background-color: #f1f2f3;height: 100%;margin: 10px; "class="card " >
+<div style="background-color: #f1f2f3;margin: 10px; "class="card " >
 
   <div style="margin-top: 30px;">
     <p-toast position="top-right"></p-toast>
     <p-confirmDialog appendTo="body" [style]="{width: '50vw'}"></p-confirmDialog>
     <h2 class="text-center " style="color: rgb(46, 146, 138);  font-family: 'Times New Roman', Times, serif;">Liste Des pharmaciens</h2>
-    <p-table [value]="medecins" [scrollable]="true" scrollHeight="500px">
+    <p-table [value]="medecins" style="margin: 20px;" [paginator]="true" [rows]="5"  [totalRecords]="120" [rowsPerPageOptions]="[5,10,25,50,100]">
       <ng-template pTemplate="header" >
         <tr>
       <th>Email</th>
