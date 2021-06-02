@@ -248,6 +248,7 @@ montantPaie:number=0;
 
   CategorieAge(){
     let date=new Date();
+    console.log(new Date(this.patients[0].date_nai_benef).getFullYear());
    for(let j=0;j<this.patients.length;j++){
          let diff=date.getFullYear()-new Date(this.patients[j].date_nai_benef).getFullYear();
       console.log(diff);

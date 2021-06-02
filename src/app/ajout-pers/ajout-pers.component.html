@@ -40,7 +40,7 @@
                           <mat-form-field appearance="legacy" style="width: 100%;">
                             <mat-label>Nom</mat-label>
                             <input matInput placeholder="Nom" [(ngModel)]="name" name="nom_med" #nme="ngModel" required>
-                            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                            <mat-icon matSuffix>account_circle</mat-icon>
                           </mat-form-field>
                         </p>
                         <div [hidden]="!nme.errors?.required || nme.pristine" class="alert alert-danger">
@@ -52,7 +52,7 @@
                             <mat-label>Prenom</mat-label>
                             <input matInput placeholder="prenom" [(ngModel)]="prenom" name="prenom_med" #pm="ngModel"
                               required>
-                            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                            <mat-icon matSuffix>account_circle</mat-icon>
                           </mat-form-field>
                         </p>
                         <div [hidden]="!pm.errors?.required || pm.pristine" class="alert alert-danger">
@@ -63,7 +63,7 @@
                           <mat-form-field appearance="legacy" style="width: 100%;">
                             <mat-label>Email</mat-label>
                             <input matInput placeholder="email" [(ngModel)]="email" name="email" #cn="ngModel" required>
-                            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                            <mat-icon matSuffix>account_circle</mat-icon>
                           </mat-form-field>
                         </p>
                         <div [hidden]="!cn.errors?.required || cn.pristine" class="alert alert-danger">
@@ -75,7 +75,7 @@
                             <mat-label>Mot de passe</mat-label>
                             <input matInput placeholder="mot de passe" [(ngModel)]="password" name="password" #pass="ngModel"
                               required>
-                            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                            <mat-icon matSuffix>account_circle</mat-icon>
                           </mat-form-field>
                         </p>
                         <div [hidden]="!pass.errors?.required || pass.pristine" class="alert alert-danger">
@@ -92,7 +92,7 @@
                             <mat-label>Capacité</mat-label>
                             <input matInput placeholder="Capacité medecin/jour" [(ngModel)]="capacite" name="capacite" #nv="ngModel"
                               required>
-                            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                            <mat-icon matSuffix>account_circle</mat-icon>
                           </mat-form-field>
                         </p>
                         <div [hidden]="!nv.errors?.required || nv.pristine" class="alert alert-danger">
@@ -120,14 +120,14 @@
                             <mat-label>Service</mat-label>
                             <input matInput placeholder="Service" [(ngModel)]="service" name="service" #serv="ngModel"
                               required>
-                            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                            <mat-icon matSuffix>account_circle</mat-icon>
                           </mat-form-field>
                         </p>
 
                         <mat-form-field style="width: 100%;" appearance="fill">
                           <mat-label>Specialité</mat-label>
                           <mat-select name="specialite" [(ngModel)]="specialite" required>
-                            <mat-option *ngFor="let jour of jours" value="{{jour.value}}">
+                            <mat-option *ngFor="let jour of jours" value="{{jour.viewValue}}">
                               {{jour.viewValue}}
                             </mat-option>
                           </mat-select>
@@ -162,7 +162,7 @@
                             <input matInput placeholder="Email" [(ngModel)]="psdo" name="email" #cte="ngModel"
                              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
                               required>
-                            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                            <mat-icon matSuffix>account_circle</mat-icon>
                           </mat-form-field>
                         </p>
                         <div *ngIf="cte.invalid && (cte.dirty || cte.touched)" class="alert alert-danger">
@@ -185,7 +185,7 @@
                             <mat-label>Mot de passe</mat-label>
                             <input matInput placeholder="mot de passe" [(ngModel)]="pas" name="password"
                                   #vle="ngModel" minlength="8"  required>
-                            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                            <mat-icon matSuffix>account_circle</mat-icon>
                           </mat-form-field>
                         </p>
                         <div *ngIf="vle.touched" class="alert alert-danger">

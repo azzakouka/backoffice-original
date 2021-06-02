@@ -93,8 +93,8 @@ code=Math.floor(Math.random() * 999999) + 100000;
          let addedData = JSON.stringify(form.value);
          console.log ("addedData", addedData);
        this.http.post(environment.api+"auth/signupMedecin", addedData,this.httpOptions).subscribe((res) => {
-        this.router.navigate(['/login']);
-          this.messageService.add({severity:'success', summary: 'Message', detail:'Succes'});
+        //this.router.navigate(['/login']);
+          this.messageService.add({severity:'success', summary: 'Message', detail:'Medecin ajouté avec succés '});
 
          },
            error => {
@@ -107,8 +107,8 @@ code=Math.floor(Math.random() * 999999) + 100000;
     let addedData = JSON.stringify(form.value);
     console.log ("addedData", addedData);
   this.http.post(environment.api+"auth/signupPharmacien", addedData,this.httpOptions).subscribe((res) => {
-    this.messageService.add({severity:'success', summary: 'Message', detail:'Succes'});
-   this.router.navigate(['/login']);
+    this.messageService.add({severity:'success', summary: 'Message', detail:'Pharmacien ajouté avec succés'});
+   //this.router.navigate(['/login']);
     },
       error => {
       this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
