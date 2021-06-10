@@ -1,16 +1,16 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 import { DataService } from '../data.service';
 
 @Component({
-  selector: 'app-profil',
-  templateUrl: './profil.component.html',
-  styleUrls: ['./profil.component.css']
+  selector: 'app-modif-profil',
+  templateUrl: './modif-profil.component.html',
+  styleUrls: ['./modif-profil.component.css']
 })
-export class ProfilComponent implements OnInit {
+export class ModifProfilComponent implements OnInit {
   user:any;
   role:any;
   rdv:any[]=[];
@@ -22,19 +22,19 @@ export class ProfilComponent implements OnInit {
   isup=false;
   rendezvous:any;
   edit=false;
-  display: boolean = false;
+  display: any;
 
-    constructor(private http:HttpClient,private dataService:DataService,private router:Router,private messageService:MessageService) {   }
-    closeModal() {
-      this.display=false;
-    }
+  constructor(private http:HttpClient,private dataService:DataService,private router:Router,private messageService:MessageService) { }
+
     ngOnInit() {
       this.display = true;
       this.user=this.dataService.user;
       this.edit=true;
     }
 
-
+    closeModal() {
+      this.display=false;
+    }
     Submit(f:any){
       if(this.mdp!=""){
         if(this.mdp==f.value.password)
@@ -45,7 +45,7 @@ export class ProfilComponent implements OnInit {
             console.log("success");
         },
           (error) =>{
-            this.messageService.add({severity:'danger', summary: ' Erreur', detail:'erreur lors de la modification'});
+            this.messageService.add({severity:'error', summary: ' Erreur', detail:'erreur lors de la modification'});
             console.log("error");
       });
         }
@@ -80,4 +80,5 @@ export class ProfilComponent implements OnInit {
    verifprofil(){
      this.router.navigate(['/profil',this.user._id]);
    }
+
 }

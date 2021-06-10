@@ -38,6 +38,7 @@ tab:any[]=[{anee:'2021'},
             ];
 nombre:number=0;
 montantPaie:number=0;
+isup=false;
 
     constructor(private dataService: DataService,private http:HttpClient,private router:Router) {
       Chart.register(BarElement,LineElement,LineController,PointElement, BarController,PieController, CategoryScale,LinearScale,ArcElement, Filler, Legend, Title, Tooltip);
@@ -229,6 +230,24 @@ montantPaie:number=0;
       this.nonRdv.push(conf);
       }
     console.log(this.nbr);
+    this.myChart.destroy();
+    /*this.myChart = new Chart('myChart', {
+      type: 'bar',
+      data: {
+          labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+          datasets: [ {
+            label: 'Nombre des rendez-vous confirmé',
+            backgroundColor: '#42A5F5',
+            data: this.nbr
+        },
+        {
+            label: 'Nombre des rendez-vous non confirmé',
+            backgroundColor: '#FFA726',
+            data: this.nonRdv
+        }]
+      },
+
+  });*/
   }
 
   Montantpaiement(){
@@ -276,6 +295,6 @@ montantPaie:number=0;
  }
 
  verifprofil(){
-   this.router.navigate(['/profil',this.user._id]);
+   this.isup=true;
  }
 }

@@ -36,6 +36,8 @@ import { ProfilComponent } from './profil/profil.component';
 import {ChartModule} from 'primeng/chart';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {NgxPrintModule} from 'ngx-print';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { ModifProfilComponent } from './modif-profil/modif-profil.component';
 
 @NgModule({
   declarations: [
@@ -46,13 +48,14 @@ import {NgxPrintModule} from 'ngx-print';
     LoginComponent,
     AjoutPersComponent,
     DashboardComponent,
-    ProfilComponent
+    ProfilComponent,
+    ModifProfilComponent
   ],
   imports: [MatTabsModule,ProgressBarModule,
     MatButtonModule,DialogModule,
     MatCheckboxModule,ConfirmDialogModule,
     MatGridListModule,ChartModule,
-    MatInputModule,
+    MatInputModule,MDBBootstrapModule.forRoot(),
     MatIconModule,NgxPrintModule,
     BrowserAnimationsModule,
     DropdownModule,MatSelectModule,SidebarModule,

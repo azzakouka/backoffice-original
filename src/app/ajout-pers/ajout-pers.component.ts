@@ -35,6 +35,7 @@ export class AjoutPersComponent implements OnInit {
   sexe_benef:any="";
   tel_benef:any="";
 role:any="F";
+isup=false;
 test:boolean=true;
 code=Math.floor(Math.random() * 999999) + 100000;
   enabled?:boolean=false;
@@ -121,6 +122,6 @@ code=Math.floor(Math.random() * 999999) + 100000;
  }
 
  verifprofil(){
-   this.router.navigate(['/profil',this.user._id]);
+   this.isup=true;
  }
 }

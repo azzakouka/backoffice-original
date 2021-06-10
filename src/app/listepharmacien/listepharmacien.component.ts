@@ -24,7 +24,7 @@ export class ListepharmacienComponent implements OnInit {
   medecins:any[]=[];
   user:any="";
   codhop:any="";
-
+isup:any=false;
   constructor(private confirmationService: ConfirmationService, private messageService: MessageService,private dataService: DataService,private router:Router, private http:HttpClient) { }
 
   ngOnInit(): void {
@@ -73,7 +73,7 @@ confirm2(id:any) {
 }
 
 verifprofil(){
- this.router.navigate(['/profil',this.user._id]);
+ this.isup=true;
 }
 }
 

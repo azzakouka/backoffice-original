@@ -1,10 +1,16 @@
 <div style="width: 100%;" class="d-flex">
   <app-navbar style="width:15%" [user]="user"></app-navbar>
   <div style="width: 100%; float: right;">
-    <div style=" height: 9%; background-color:#43cebb;padding: 5px;" >
-      <button pButton  (click)="verifprofil()" pRipple  style="background-color: #43cebb;float:right;margin:5px" label="Profil" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
-      <button pButton (click)="logout()"  pRipple style="background-color: #43cebb;float:right;" icon="pi pi-user" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
-  </div><br>
+    <div style=" height: 9%; background-color:#257e72;padding: 5px;" >
+      <div style="margin-right: 30px;float: right;margin-top: -1%;" class="nav-item dropdown" dropdown>
+        <button style="background-color: #43cebb;" pButton pRipple icon="pi pi-user" label="Profil" dropdownToggle mdbWavesEffect type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4 nav-link dropdown-toggle waves-light" mdbWavesEffect>
+           <span class="caret"></span></button>
+        <div  *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+          <a  class="dropdown-item waves-light" mdbWavesEffect (click)="verifprofil()">Modifier profil</a>
+          <a  class="dropdown-item waves-light" mdbWavesEffect (click)="logout()">Se deconnecter</a>
+        </div>
+      </div>
+     </div><br>
 
     <div style="background-color: #f1f2f3;margin: 10px;"class="card " >
       <div style="margin-top: 30px;">
@@ -35,6 +41,8 @@
         </p-table>
       </div>
     </div>
-
+    <div *ngIf="isup">
+      <app-modif-profil></app-modif-profil>
+      </div>
     </div>
 </div>

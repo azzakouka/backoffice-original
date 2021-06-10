@@ -21,6 +21,8 @@ export class ListeMedecinComponent implements OnInit {
   medecins:any[]=[];
   user:any;
 codhop:any;
+isup=false;
+
   constructor(private confirmationService: ConfirmationService, private messageService: MessageService,private dataService: DataService,private router:Router, private http:HttpClient) { }
 
   ngOnInit(): void {
@@ -61,7 +63,6 @@ confirm2(id:any) {
      }
  });
 }
-
 logout(){
   this.http.delete(environment.api+"/logout" +`/${this.user._id}`);
   this.router.navigate(['/login']);
@@ -69,6 +70,6 @@ logout(){
 }
 
 verifprofil(){
- this.router.navigate(['/profil',this.user._id]);
+ this.isup=true;
 }
 }
