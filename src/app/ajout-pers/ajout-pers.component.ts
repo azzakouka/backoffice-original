@@ -16,9 +16,19 @@ export class AjoutPersComponent implements OnInit {
   hide:any=true;
   password?:any="";
   email?:any="";
-  specialite?:any="";
-  service?:any="";
   codhop?:any="";
+  service:any[]=[{value:"Pneumologie"},
+                {value:"cardiologie"},
+                {value:"Pédiatrie"},
+                {value:"Chirurgie Orthopédique"},
+                {value:"Gynécologie "},
+                {value:"Allergologie"},
+                {value:"cytologie "}
+              ]
+ specialite:any[]=[{value:"Spécialiste"},
+              {value:"Généraliste"},
+              {value:"Professeur"}
+            ]
   status?:any="pending";
   nom_pren_benef:any="";
   pren_benef:any="";
@@ -46,12 +56,8 @@ code=Math.floor(Math.random() * 999999) + 100000;
     })
   }
 
-  jours: any[] = [
-    {value: 'S', viewValue: 'Specialiste'},
-    {value: 'P', viewValue: 'Professeur'},
-    {value: 'G', viewValue: 'Generaliste'},
-  ];
-
+  spece: any="";
+  serve: any="";
   hopital:any[]=[];
   hopitals:any[]=[];
   user:any="";
