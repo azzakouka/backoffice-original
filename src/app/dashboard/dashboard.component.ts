@@ -65,18 +65,18 @@ isup=false;
             labels: ['Cnam', 'Cnss/Cnrps', 'Tarif Complet'],
             datasets: [
               {
-                  data: this.categ,
-                  backgroundColor: [
-                      "#FF6384",
-                      "#36A2EB",
-                      "#FFCE56"
-                  ],
-                  hoverBackgroundColor: [
-                      "#FF6384",
-                      "#36A2EB",
-                      "#FFCE56"
-                  ]
-              }]
+                data: [300, 50, 100],
+                backgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56"
+                ],
+                hoverBackgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56"
+                ]
+            }]
         },
 
     });
@@ -94,12 +94,12 @@ isup=false;
             datasets: [ {
               label: 'Nombre des rendez-vous confirmé',
               backgroundColor: '#42A5F5',
-              data: this.nbr
+              data: [400,950,65,84,995,102,256,412,102,356,97,856]
           },
           {
               label: 'Nombre des rendez-vous non confirmé',
               backgroundColor: '#FFA726',
-              data: this.nonRdv
+              data: [100,25,50,41,89,36,20,58,69,118,20,10]
           }]
         },
 
@@ -135,8 +135,9 @@ isup=false;
           labels: ['2019', '2020', '2021'],
           datasets: [ {
             label: 'Montant des paiements',
-            backgroundColor: '#102db0',
-            data: this.montants
+            data: [65, 59, 80, 81, 56, 55, 40],
+            fill: false,
+            borderColor: '#42A5F5'
         }]
       },
 
@@ -230,7 +231,7 @@ isup=false;
       this.nonRdv.push(conf);
       }
     console.log(this.nbr);
-    this.myChart.destroy();
+   // this.myChart.destroy();
     /*this.myChart = new Chart('myChart', {
       type: 'bar',
       data: {
