@@ -40,47 +40,62 @@
                         <p style="width: 100%;">
                           <mat-form-field appearance="legacy" style="width: 100%;">
                             <mat-label>Nom</mat-label>
-                            <input matInput placeholder="Nom" [(ngModel)]="name" name="nom_med" #nme="ngModel" required>
+                            <input matInput placeholder="Nom" [(ngModel)]="name" name="nom_med" #nme="ngModel" required pattern="[a-zA-Z]*">
                             <mat-icon matSuffix>account_circle</mat-icon>
                           </mat-form-field>
                         </p>
-                        <div [hidden]="!nme.errors?.required || nme.pristine" class="alert alert-danger">
-                          Le nom est un champ obligatoire
-                        </div>
+                        <div *ngIf="nme.invalid && (nme.dirty || nme.touched)" class="alert alert-danger">
+                          <div *ngIf="nme.errors.required">
+                              Le nom est obligatoire
+                          </div>
+                          <div *ngIf="nme.errors.pattern">
+                            Le nom doit etre alphabetique
+                          </div>
+                       </div>
 
                         <p style="width: 100%;">
                           <mat-form-field appearance="legacy" style="width: 100%;">
                             <mat-label>Prenom</mat-label>
-                            <input matInput placeholder="prenom" [(ngModel)]="prenom" name="prenom_med" #pm="ngModel"
-                              required>
+                            <input matInput placeholder="prenom" [(ngModel)]="prenom" name="prenom_med" #pm="ngModel" pattern="[a-zA-Z]*" required>
                             <mat-icon matSuffix>account_circle</mat-icon>
                           </mat-form-field>
                         </p>
-                        <div [hidden]="!pm.errors?.required || pm.pristine" class="alert alert-danger">
-                          Le prenom est un champ obligatoire
-                        </div>
-
+                        <div *ngIf="pm.invalid && (pm.dirty || pm.touched)" class="alert alert-danger">
+                          <div *ngIf="pm.errors.required">
+                              Le prenom est obligatoire
+                          </div>
+                          <div *ngIf="pm.errors.pattern">
+                            Le prenom doit etre alphabetique
+                          </div>
+                       </div>
                         <p style="width: 100%;">
                           <mat-form-field appearance="legacy" style="width: 100%;">
                             <mat-label>Email</mat-label>
-                            <input matInput placeholder="email" [(ngModel)]="email" name="email" #cn="ngModel" required>
+                            <input matInput placeholder="email" [(ngModel)]="email" name="email" #cn="ngModel" required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
                             <mat-icon matSuffix>account_circle</mat-icon>
                           </mat-form-field>
                         </p>
-                        <div [hidden]="!cn.errors?.required || cn.pristine" class="alert alert-danger">
-                          Le email est un champ obligatoire
-                        </div>
+                        <div *ngIf="cn.invalid && (cn.dirty || cn.touched)" class="alert alert-danger">
+                          <div *ngIf="cn.errors.required">
+                              L'email est obligatoire
+                          </div>
+                          <div *ngIf="cn.errors.pattern">
+                            L'email est invalide
+                          </div>
+                       </div>
 
                         <p style="width: 100%;">
                           <mat-form-field appearance="legacy" style="width: 100%;">
                             <mat-label>Mot de passe</mat-label>
-                            <input matInput type="password" placeholder="mot de passe" [(ngModel)]="password" name="password" #pass="ngModel"
-                              required>
+                            <input matInput type="password" placeholder="mot de passe" [(ngModel)]="password" name="password" #pass="ngModel" minlength="8"  required>
                             <mat-icon matSuffix>account_circle</mat-icon>
                           </mat-form-field>
                         </p>
-                        <div [hidden]="!pass.errors?.required || pass.pristine" class="alert alert-danger">
-                          Le mot de passe est un champ obligatoire
+
+                        <div *ngIf="pass.invalid && (pass.dirty || pass.touched)" class="alert alert-danger">
+                          <div *ngIf="pass.errors.required">
+                              Le mot de passe est obligatoire
+                          </div>
                         </div>
 
                       </div>
@@ -91,48 +106,42 @@
                         <p style="width: 100%;">
                           <mat-form-field appearance="legacy" style="width: 100%;">
                             <mat-label>Numero de telephone</mat-label>
-                            <input matInput placeholder="Num tel" [(ngModel)]="capacite" name="numTel" #nv="ngModel"
-                              required>
+                            <input matInput placeholder="Num tel" [(ngModel)]="capacite" name="numTel" #nv="ngModel"  pattern="[0-9]{8}" required>
                             <mat-icon matSuffix>account_circle</mat-icon>
                           </mat-form-field>
                         </p>
-                        <div [hidden]="!nv.errors?.required || nv.pristine" class="alert alert-danger">
-                          Le numero de telephone est un champ obligatoire
-                        </div>
-
-                        <!--<div class="form-group" style="width: 100%;">
-                            <div class="p-field p-col-12 p-md-4" style="width: 100%;">
-
-                               <div  class="p-inputgroup" style="width: 100%;">
-                                   <mat-form-field style="width: 100%;" appearance="fill">
-                                    <mat-label>Hopital</mat-label>
-                                    <mat-select name="cod_hop" [(ngModel)]="codhop">
-                                      <mat-option *ngFor="let hopital of hopitals" [value]="hopital.cod_hop">
-                                        {{hopital.nom_hop}}
-                                      </mat-option>
-                                    </mat-select>
-                                  </mat-form-field>
-                               </div>
-                           </div>
-                        </div>-->
+                        <div *ngIf="nv.invalid && (nv.dirty || nv.touched)" class="alert alert-danger ">
+                          <div *ngIf="nv.errors.required">
+                            Le numero de telephone est obligatoire
+                          </div>
+                          <div *ngIf="nv.errors.pattern">
+                            Le numero de telephone doit etre numérique et de 8 chiffres
+                          </div>
+                       </div>
 
                           <mat-form-field appearance="fill" style="width: 100%;">
                             <mat-label>Service</mat-label>
-                            <mat-select name="service" [(ngModel)]="serve" required>
+                            <mat-select name="service" [(ngModel)]="serve" #serv="ngModel" required>
                               <mat-option *ngFor="let serv of service" [value]="serv.value">
                                 {{serv.value}}
                               </mat-option>
                             </mat-select>
                           </mat-form-field>
+                          <div *ngIf="serv.invalid && (serv.dirty || serv.touched)" class="alert alert-danger">
+                            le service est obligatoire
+                        </div>
 
                         <mat-form-field style="width: 100%;" appearance="fill">
                           <mat-label>Specialité</mat-label>
-                          <mat-select name="specialite" [(ngModel)]="spece" required>
+                          <mat-select name="specialite" [(ngModel)]="spece" #spc="ngModel" required>
                             <mat-option *ngFor="let spec of specialite" [value]="spec.value">
                               {{spec.value}}
                             </mat-option>
                           </mat-select>
                         </mat-form-field>
+                        <div *ngIf="spc.invalid && (spc.dirty || spc.touched)" class="alert alert-danger">
+                          la specialité est obligatoire
+                      </div>
 
                       </div>
                       <div [ngStyle]="{'float':'right','margin':'20px'}">
@@ -160,20 +169,20 @@
                         <p style="width: 100%;">
                           <mat-form-field appearance="legacy" style="width: 100%;">
                             <mat-label>Email</mat-label>
-                            <input matInput placeholder="Email" [(ngModel)]="psdo" name="email" #cte="ngModel"
+                            <input matInput placeholder="Email" [(ngModel)]="psdo" name="email" #cne="ngModel"
                              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
                               required>
                             <mat-icon matSuffix>account_circle</mat-icon>
                           </mat-form-field>
                         </p>
-                        <div *ngIf="cte.invalid && (cte.dirty || cte.touched)" class="alert alert-danger">
-                          <div *ngIf="cte.errors?.pattern && cte.touched">
-                            email invalide
+                        <div *ngIf="cne.invalid && (cne.dirty || cne.touched)" class="alert alert-danger">
+                          <div *ngIf="cne.errors.required">
+                              L'email est obligatoire
                           </div>
-                        </div>
-                        <div [hidden]="!cte.errors?.required || cte.pristine" class="alert alert-danger">
-                          Le email est un champ obligatoire
-                        </div>
+                          <div *ngIf="cne.errors.pattern">
+                            L'email est invalide
+                          </div>
+                       </div>
 
                       </div>
                     </div>
@@ -185,17 +194,14 @@
                           <mat-form-field appearance="legacy" style="width: 100%;">
                             <mat-label>Mot de passe</mat-label>
                             <input matInput placeholder="mot de passe" [(ngModel)]="pas" name="password"
-                                  #vle="ngModel" minlength="8"  required>
+                                  #pss="ngModel" minlength="8"  required>
                             <mat-icon matSuffix>account_circle</mat-icon>
                           </mat-form-field>
                         </p>
-                        <div *ngIf="vle.touched" class="alert alert-danger">
-                          <div *ngIf="vle.invalid;">
-                            veuillez saisir un mot de passe de 8 charachteres
+                        <div *ngIf="pss.invalid && (pss.dirty || pss.touched)" class="alert alert-danger">
+                          <div *ngIf="pss.errors.required">
+                              Le mot de passe est obligatoire
                           </div>
-                        </div>
-                        <div [hidden]="!vle.errors?.required || vle.pristine" class="alert alert-danger">
-                          Le mot de passe est un champ obligatoire
                         </div>
 
                       </div>

@@ -38,6 +38,7 @@ import {ProgressBarModule} from 'primeng/progressbar';
 import {NgxPrintModule} from 'ngx-print';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ModifProfilComponent } from './modif-profil/modif-profil.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,7 @@ import { ModifProfilComponent } from './modif-profil/modif-profil.component';
   ],
 
     exports:[MatTabsModule,MatFormFieldModule,DropdownModule,MatSelectModule,SidebarModule,BrowserAnimationsModule,MatIconModule],
-    providers: [ConfirmationService, DataService,MessageService,{ provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }   ],
+    providers: [ConfirmationService, DataService,MessageService,CookieService,{ provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }   ],
     bootstrap: [AppComponent]
 })
 export class AppModule {  constructor(private primengConfig: PrimeNGConfig) {} }

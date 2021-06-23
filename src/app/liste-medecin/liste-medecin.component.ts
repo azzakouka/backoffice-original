@@ -51,6 +51,8 @@ confirm2(id:any) {
          (Response:any) => {
           this.messageService.add({severity:'success', summary: 'Success', detail: 'Medecin supprimé avec succées'});
            console.log("success");
+           window.location.reload();
+
          },
          (error:any) => {
           this.messageService.add({severity:'danger', summary: 'danger', detail: 'Erreur de suppression '});

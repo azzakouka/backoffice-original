@@ -33,12 +33,23 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  Submit(form:any){
-    console.log ("form.value", form.value)
-    this.dataService.getCurrentUser(form,this.codhop);
-    if(this.dataService.user==null)
-        this.messageService.add({severity:'error', summary: ' Message', detail:'Données incorrectes'});
+  async Submit(form:any) {
 
+    console.log(form.value);
+if( form.value.email=="" && form.value.password==""){
+  this.messageService.add({severity:'error', summary: ' Message', detail:'Veuillez saisir des données valides'});
+       }
+         else
+{ setTimeout(() => {
+  this.dataService.getCurrentUser(form,this.codhop);
+  console.log(this.dataService.user);
+  if(  this.dataService.user==undefined)
+        this.messageService.add({severity:'error', summary: ' Message', detail:'Données incorrectes'});
+else
+this.router.navigate(['/dash']);
+
+}, 1000);
+}
   }
-   
+
 }

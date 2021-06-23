@@ -1,9 +1,12 @@
 <p-toast position="top-right"></p-toast>
 
-<p-dialog class="edit" appendTo="body" [(visible)]="display" [style]="{width: '30vw'}"  [responsive]="true">
+<p-dialog class="edit" appendTo="body" [(visible)]="display"  header="Modifier votre profil" [style]="{width: '30vw'}"  [responsive]="true">
 
-  <h1 style="font-weight: bold;margin:15px;text-align: center;color: #43cebb;">Modifie votre profil</h1>
          <div >
+          <div class="col-md-12">
+            <img style="height: 200px; margin-left: 25%;" src="../../assets/user.jpg" class="rounded-circle" alt=""/>
+          <h3 style="text-align: center;">Bonjour <span style="color: #43cebb;">Bonjour</span> </h3>
+          </div>
           <form #f="ngForm" (ngSubmit)="Submit(f)" class="row">
 
               <div class="col-md-6">
@@ -37,9 +40,9 @@
               </div>
               <div class="col-12">
                 <hr>
-                <button pButton pRipple [disabled]="!f.form.valid" style="background-color: #43cebb;float: left;"
+                <button pButton pRipple [disabled]="!f.form.valid" style="background-color: #FFC909;float: right;"
                   icon="pi pi-check" label="Enregistrer" type="submit" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
-                <button pButton pRipple style="background-color: #43cebb;float: right;" type="button" (click)="closeModal()"
+                <button pButton pRipple style="background-color: #FFC909;float: left;" type="button" (click)="closeModal()"
                   pButton label=" Retour"  class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
               </div>
           </form>

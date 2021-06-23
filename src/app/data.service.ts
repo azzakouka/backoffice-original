@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -16,8 +17,8 @@ export class DataService {
   id:any;
 user:any;
 codhop:any;
-
-  constructor(private http: HttpClient,private router:Router) { }
+test:any;
+  constructor(private http: HttpClient,private router:Router,private cookieService:CookieService) { }
   getAllHopitals(): Observable<any[]> {
     return this.http.get<any[]>(environment.api+"rdv");
 }
@@ -36,21 +37,22 @@ codhop:any;
    update(f:any,id:any,path:any){
     return this.http.patch(environment.api+path+`/${id}`,f );
    }
-getCurrentUser(f:any,codhop:any){
+async getCurrentUser(f:any,codhop:any){
   let addedData = JSON.stringify(f.value);
          console.log ("addedData", addedData);
-    return this.http.post(environment.api+"auth/loginUser", addedData,this.httpOptions).subscribe((res:any) => {
-          localStorage.setItem("token",res.token)
-          this.user=res.user;
-          this.codhop=codhop;
-          console.log(this.user);
-         // this.verify(this.id);
-          this.router.navigate(['/dash']);
-
-         },
-           error => {
-             //this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
-           })
+          return this.http.post(environment.api+"auth/loginUser", addedData,this.httpOptions).subscribe((res:any) => {
+          // localStorage.setItem("token",res.token)
+           if(res.user!=null){
+             this.cookieService.set('data', JSON.stringify(res.user));
+         //this.cookieService.set('password', res.user.password);
+             console.log(this.cookieService.get('data'));
+             this.user= JSON.parse(this.cookieService.get('data'));
+           this.codhop=codhop;
+           console.log(this.user);
+           }
+           else
+           this.test=false;
+         });
        ;}
 
        verify(id: any){
