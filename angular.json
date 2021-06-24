@@ -5,11 +5,7 @@
   "projects": {
     "CimsBackOffice": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:application": {
-          "strict": true
-        }
-      },
+      "schematics": { },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -72,7 +68,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "CimsBackOffice:build"
+            "browserTarget": "CimsBackOffice:build",
+            "proxyConfig": "src/proxy.json"
           },
           "configurations": {
             "production": {
