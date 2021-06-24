@@ -183,7 +183,9 @@ isup=false;
 
 
   }
-
+clickPrint(){
+  window.print();
+}
   getTypeBen(){
     let cn=0;
     let tc=0;
