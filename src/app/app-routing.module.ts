@@ -9,7 +9,7 @@ import { ProfilComponent } from './profil/profil.component';
 
 const routes: Routes = [
   {path:'listeMedecin', component:ListeMedecinComponent},
-  {path:'profil/:id', component:ProfilComponent},  
+  {path:'profil/:id', component:ProfilComponent},
   {path:'AjoutPers', component:AjoutPersComponent},
   {path:'dash', component:DashboardComponent},
   {path:'login', component:LoginComponent},
@@ -19,7 +19,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{useHash:true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
