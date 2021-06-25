@@ -7,7 +7,7 @@
            <span class="caret"></span></button>
         <div  *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
           <a  class="dropdown-item waves-light" mdbWavesEffect (click)="verifprofil()">Modifier profil</a>
-          <a  class="dropdown-item waves-light" mdbWavesEffect (click)="logout()">Se deconnecter</a>
+          <a  class="dropdown-item waves-light" mdbWavesEffect (click)="logout()">Se déconnecter</a>
         </div>
       </div>
     </div><br>
@@ -15,7 +15,7 @@
 
       <div style="background-color: #f1f2f3;height: 100%; " class="card ">
         <h1 class="text-center "
-          style="color: black; margin:20px; font-family: 'Times New Roman', Times, serif;">Creer Comptes
+          style="color: black; margin:20px; font-family: 'Times New Roman', Times, serif;">Créer Compte
         </h1>
         <p-toast position="top-right"></p-toast>
         <hr style="background-color:  #FFC909;height: 3px;">
@@ -49,23 +49,23 @@
                               Le nom est obligatoire
                           </div>
                           <div *ngIf="nme.errors.pattern">
-                            Le nom doit etre alphabetique
+                            Le nom doit être alphabétique
                           </div>
                        </div>
 
                         <p style="width: 100%;">
                           <mat-form-field appearance="legacy" style="width: 100%;">
-                            <mat-label>Prenom</mat-label>
+                            <mat-label>Prénom</mat-label>
                             <input matInput placeholder="prenom" [(ngModel)]="prenom" name="prenom_med" #pm="ngModel" pattern="[a-zA-Z]*" required>
                             <mat-icon matSuffix>account_circle</mat-icon>
                           </mat-form-field>
                         </p>
                         <div *ngIf="pm.invalid && (pm.dirty || pm.touched)" class="alert alert-danger">
                           <div *ngIf="pm.errors.required">
-                              Le prenom est obligatoire
+                              Le prénom est obligatoire
                           </div>
                           <div *ngIf="pm.errors.pattern">
-                            Le prenom doit etre alphabetique
+                            Le prénom doit être alphabétique
                           </div>
                        </div>
                         <p style="width: 100%;">
@@ -105,7 +105,7 @@
 
                         <p style="width: 100%;">
                           <mat-form-field appearance="legacy" style="width: 100%;">
-                            <mat-label>Numero de telephone</mat-label>
+                            <mat-label>Numéro de téléphone</mat-label>
                             <input matInput placeholder="Num tel" [(ngModel)]="capacite" name="numTel" #nv="ngModel"  pattern="[0-9]{8}" required>
                             <mat-icon matSuffix>account_circle</mat-icon>
                           </mat-form-field>
@@ -115,7 +115,7 @@
                             Le numero de telephone est obligatoire
                           </div>
                           <div *ngIf="nv.errors.pattern">
-                            Le numero de telephone doit etre numérique et de 8 chiffres
+                            Le numéro de téléphone doit être numérique et de 8 chiffres
                           </div>
                        </div>
 
@@ -132,7 +132,7 @@
                         </div>
 
                         <mat-form-field style="width: 100%;" appearance="fill">
-                          <mat-label>Specialité</mat-label>
+                          <mat-label>Spécialité</mat-label>
                           <mat-select name="specialite" [(ngModel)]="spece" #spc="ngModel" required>
                             <mat-option *ngFor="let spec of specialite" [value]="spec.value">
                               {{spec.value}}
@@ -140,7 +140,7 @@
                           </mat-select>
                         </mat-form-field>
                         <div *ngIf="spc.invalid && (spc.dirty || spc.touched)" class="alert alert-danger">
-                          la specialité est obligatoire
+                          la spécialité est obligatoire
                       </div>
 
                       </div>
@@ -165,6 +165,31 @@
                       </h4>
                     </div>
                     <div class="card-body ">
+                      <div class="col-md-6">
+                        <mat-form-field appearance="legacy" style="width: 100%;">
+                          <mat-label>Nom</mat-label>
+                          <input matInput placeholder="nom" [(ngModel)]="nom_pharm" name="nom" #nme="ngModel"
+                          pattern="[a-zA-Z]*"
+                            required>
+                          <mat-icon matSuffix>account_circle</mat-icon>
+                        </mat-form-field>
+                        <div *ngIf="nme.invalid && (nme.dirty || nme.touched)" class="alert alert-danger">
+                          <div *ngIf="nme.errors?.pattern ">
+                            Le nom doit être alphabetique
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="account-ln">Prénom</label>
+                          <input class="form-control" type="text" id="account-ln" name="prenom_med" [(ngModel)]="user.prenom_med" pattern="[a-zA-Z]*" #pren="ngModel">
+                        </div>
+                        <div *ngIf="pren.invalid && (pren.dirty || pren.touched)" class="alert alert-danger">
+                          <div *ngIf="pren.errors?.pattern ">
+                            Le prénom doit être alphabétique
+                          </div>
+                        </div>
+                      </div>
                       <div class=" col-g-5">
                         <p style="width: 100%;">
                           <mat-form-field appearance="legacy" style="width: 100%;">

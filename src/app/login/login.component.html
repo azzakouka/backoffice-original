@@ -24,7 +24,7 @@
                     <input type="password" name="password" [(ngModel)]="mdp" class="form-control" placeholder="mot de passe"/>
                   </div>
                   <mat-form-field appearance="fill" style="width: 100%;">
-                    <mat-label style="color: black;">Choisir un hopital</mat-label>
+                    <mat-label style="color: black;">Choisir un hôpital</mat-label>
                     <mat-select [(ngModel)]="codhop" name="cod_hop">
                       <mat-option *ngFor="let hopital of hopitals" value="{{hopital.cod_hop}}">
                         {{hopital.nom_hop}}

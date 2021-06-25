@@ -30,10 +30,7 @@ export class AjoutPersComponent implements OnInit {
               {value:"Professeur"}
             ]
   status?:any="pending";
-  nom_pren_benef:any="";
-  pren_benef:any="";
-  pren_pere_benef:any="";
-  pren_mere_benef:any="";
+ 
   pass:any="";
   jour:any="";
   capacite:any="";
@@ -41,13 +38,13 @@ export class AjoutPersComponent implements OnInit {
   pas:any="";
   psseudo:any="";
   confemail:any=""
-  date_nai_benef:any="";
-  sexe_benef:any="";
-  tel_benef:any="";
+
+  nom_pharm:any="";
+  prenom_pharm:any="";
 role:any="F";
 isup=false;
 test:boolean=true;
-code=Math.floor(Math.random() * 999999) + 100000;
+
   enabled?:boolean=false;
   medecins:any[]=[];
   httpOptions = {
@@ -74,25 +71,9 @@ code=Math.floor(Math.random() * 999999) + 100000;
       });
     }
 
-    notify(subject:any,code:any){
-      this.test=false;
-      let ch=this.psseudo;
+  
 
-      let object={"to":ch,"sub":"Confirmation","text":code+subject};
-      return this.http.post(environment.api+"users/mailing", object).subscribe((res:any) => {
-        console.log("success");
-        console.log(code);
-
-        this.messageService.add({severity:'success', summary: 'Success', detail: 'email envoyée avec succées'});
-       },
-         error => {
-          this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
-          console.log("error");
-      });
-
-    }
-
-
+///Signup médecin
 
   Submit(form:any) {
 
@@ -108,7 +89,7 @@ code=Math.floor(Math.random() * 999999) + 100000;
              this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
            });
    }
-
+///Sign up pharmacien
    SubmitUser(form:any){
     console.log ("form.value", form.value)
     let addedData = JSON.stringify(form.value);
@@ -121,6 +102,7 @@ code=Math.floor(Math.random() * 999999) + 100000;
       this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
       });
    }
+   
    logout(){
     this.http.delete(environment.api+"/logout" +`/${this.user._id}`);
     this.router.navigate(['/login']);

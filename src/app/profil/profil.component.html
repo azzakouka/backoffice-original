@@ -31,7 +31,7 @@
           <div class="col-md-8">
             <div class="card mb-3"  style="margin-top: 15%;height: 50vh;">
               <div class="card-body">
-                <h1 style="font-weight: bold;margin:5px">Modifie votre profil</h1>
+                <h1 style="font-weight: bold;margin:5px">Modifier votre profil</h1>
                <div >
                 <form #f="ngForm" (ngSubmit)="Submit(f)" class="row">
 
@@ -54,7 +54,7 @@
                         </div>
                         <div *ngIf="userPassword.touched" class="alert alert-danger">
                           <div *ngIf = "userPassword.invalid; ">
-                            veillez saisir un mot de passe de 8 charachteres
+                            veillez saisir un mot de passe de 8 charachtéres minimum
                           </div>
                            </div>
                     </div>
@@ -71,7 +71,7 @@
                                 <input class="custom-control-input" type="checkbox" id="subscribe_me" checked="">
                                 <label class="custom-control-label" for="subscribe_me">Subscribe me to Newsletter</label>
                             </div>-->
-                            <button class="btn btn-style-1" style="background-color:#FFC909;color: white;float: right;" type="submit" [disabled]="!f.valid" >Mettre a jour</button>
+                            <button class="btn btn-style-1" style="background-color:#FFC909;color: white;float: right;" type="submit" [disabled]="!f.valid" >Mettre à jour</button>
 
                     </div>
                 </form>
