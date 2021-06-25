@@ -44,10 +44,10 @@ async getCurrentUser(f:any,codhop:any){
           // localStorage.setItem("token",res.token)
            if(res.user!=null){
              this.cookieService.set('data', JSON.stringify(res.user));
-         //this.cookieService.set('password', res.user.password);
+         this.cookieService.set('codhop', codhop);
              console.log(this.cookieService.get('data'));
              this.user= JSON.parse(this.cookieService.get('data'));
-           this.codhop=codhop;
+           this.codhop=this.cookieService.get('codhop');
            console.log(this.user);
            }
            else
@@ -77,5 +77,10 @@ async getCurrentUser(f:any,codhop:any){
       getRegime(reg:any): Observable<any>{
         return this.http.get<any>(environment.api+"users/regimes"+`/${reg}`);
 
+      }
+      logout(){
+        this.cookieService.deleteAll();
+        this.user="";
+        this.router.navigate(['/login']);
       }
 }

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 import { DataService } from '../data.service';
@@ -62,10 +63,12 @@ code=Math.floor(Math.random() * 999999) + 100000;
   hopitals:any[]=[];
   user:any="";
 
-    constructor(private dataService: DataService,private router:Router,private http:HttpClient, private messageService: MessageService) { }
+    constructor(private cookieService:CookieService,private dataService: DataService,private router:Router,private http:HttpClient, private messageService: MessageService) { }
 
     ngOnInit() {
-      this.user=this.dataService.user;
+      this.user=JSON.parse(this.cookieService.get('data'));
+      this.codhop=this.user.cod_hop;
+
       this.dataService.getAllHopitals().subscribe((data)=>{
         console.log(data);
         this.hopital.push(data);

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 import { DataService } from '../data.service';
@@ -25,11 +26,11 @@ export class ListepharmacienComponent implements OnInit {
   user:any="";
   codhop:any="";
 isup:any=false;
-  constructor(private confirmationService: ConfirmationService, private messageService: MessageService,private dataService: DataService,private router:Router, private http:HttpClient) { }
+  constructor(private cookieService:CookieService, private confirmationService: ConfirmationService, private messageService: MessageService,private dataService: DataService,private router:Router, private http:HttpClient) { }
 
   ngOnInit(): void {
-    this.user=this.dataService.user;
-    this.codhop=this.dataService.codhop;
+    this.user=JSON.parse(this.cookieService.get('data'));
+    this.codhop=this.user.cod_hop;
 
     this.dataService.getAllPharmaciens(this.codhop).subscribe(data=>{
       console.log(data);

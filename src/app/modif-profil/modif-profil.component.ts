@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 import { DataService } from '../data.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-modif-profil',
@@ -24,11 +25,11 @@ export class ModifProfilComponent implements OnInit {
   edit=false;
   display: any;
 
-  constructor(private http:HttpClient,private dataService:DataService,private router:Router,private messageService:MessageService) { }
+  constructor(private http:HttpClient,private dataService:DataService,private router:Router,private messageService:MessageService,private cookieService:CookieService) { }
 
     ngOnInit() {
       this.display = true;
-      this.user=this.dataService.user;
+      this.user=JSON.parse(this.cookieService.get('data'));
       this.edit=true;
     }
 
